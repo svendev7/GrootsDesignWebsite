@@ -16,6 +16,6 @@
     "noEmit": true,                           // Disables output of compiled files
     "jsx": "react-jsx"                        // Specifies the JSX code generation
   },
-  "include": ["src"],                         // Specifies the files to be included in the compilation
+  "include": ["src", "src/components", "src/index.tsx", "src/app"],                         // Specifies the files to be included in the compilation
   "exclude": ["node_modules"]                 // Specifies the files to be excluded from the compilation
 }
