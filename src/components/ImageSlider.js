@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/ImageSliderStyles.css';
 
 const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
     const trackRef = useRef(null);
+    const [growingImage, setGrowingImage] = useState(null);
 
     useEffect(() => {
         const track = trackRef.current;
@@ -62,32 +63,38 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
         };
     }, []);
 
+    const handleImageClick = (src, index) => {
+        setGrowingImage(index);
+        setTimeout(() => {
+            setGrowingImage(null);
+            onImageClick(src);
+        }, 500); 
+    };
 
     const handleFullScreenMouseDown = (e) => {
         onImageClick(selectedImage);
     };
 
-    return (
+   return (
         <>
             <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
                 {Array.from({ length: 10 }, (_, index) => (
                     <img
                         key={index}
-                        className="image"
-                        src={`/images/${index + 1}.jpg`} 
-                        alt={`Image ${index + 1}`} 
+                        className={`image ${growingImage === index ? 'growing' : ''}`}
+                        src={`/images/${index + 1}.jpg`}
+                        alt={`Image ${index + 1}`}
                         draggable="false"
-                        onClick={() => onImageClick(`/images/${index + 1}.jpg`)}
+                        onClick={() => handleImageClick(`/images/${index + 1}.jpg`, index)}
                     />
                 ))}
             </div>
             {isFullScreen && (
                 <img
-                    className="full-screen-image"
+                    className={`full-screen-image ${isFullScreen ? 'active' : ''}`}
                     src={selectedImage}
                     alt="Full Screen"
-                    onMouseDown={handleFullScreenMouseDown} 
-                    onTouchStart={handleFullScreenMouseDown} 
+                    onClick={() => onImageClick(selectedImage)}
                 />
             )}
         </>
