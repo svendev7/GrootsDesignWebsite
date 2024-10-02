@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ImageSliderStyles.css';
 
 const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
     const trackRef = useRef(null);
-    const [growingImage, setGrowingImage] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(null);
 
     useEffect(() => {
         const track = trackRef.current;
@@ -64,24 +65,18 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
     }, []);
 
     const handleImageClick = (src, index) => {
-        setGrowingImage(index);
-        setTimeout(() => {
-            setGrowingImage(null);
-            onImageClick(src);
-        }, 500); 
+        setSelectedIndex(index);
+        onImageClick(src);
     };
 
-    const handleFullScreenMouseDown = (e) => {
-        onImageClick(selectedImage);
-    };
-
-   return (
+    return (
         <>
             <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
                 {Array.from({ length: 10 }, (_, index) => (
-                    <img
+                    <motion.img
                         key={index}
-                        className={`image ${growingImage === index ? 'growing' : ''}`}
+                        layoutId={`image-${index}`}
+                        className="image"
                         src={`/images/${index + 1}.jpg`}
                         alt={`Image ${index + 1}`}
                         draggable="false"
@@ -89,14 +84,54 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
                     />
                 ))}
             </div>
-            {isFullScreen && (
-                <img
-                    className={`full-screen-image ${isFullScreen ? 'active' : ''}`}
-                    src={selectedImage}
-                    alt="Full Screen"
-                    onClick={() => onImageClick(selectedImage)}
-                />
-            )}
+            <AnimatePresence>
+                {isFullScreen && (
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            style={{
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                zIndex: 999,
+                            }}
+                            onClick={() => onImageClick(selectedImage)}
+                        />
+                        <motion.div
+                            style={{
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                zIndex: 1000,
+                                pointerEvents: 'none',
+                            }}
+                        >
+                            <motion.img
+                                layoutId={`image-${selectedIndex}`}
+                                src={selectedImage}
+                                alt="Full Screen"
+                                style={{
+                                    width: '100vw',
+                                    height: '100vh',
+                                    objectFit: 'cover',
+                                    objectPosition: 'center',
+                                }}
+                            />
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </>
     );
 };

@@ -13,44 +13,14 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(0%, -50%);
-  user-select: none; /* Prevent image highlighting */
+  user-select: none;
   will-change: transform;
 }
 
 #image-track > .image {
-  width: 40vmin; /* Each image takes the full width */
-  height: 56vmin; /* Each image takes the full height */
-  object-fit: cover; /* Cover the area */
-  object-position: 100% center; /* Center the image */
-}
-
-.full-screen-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;  /* Full width */
-  height: 100vh; /* Full height */
-  object-fit: cover; /* Cover the area */
-  z-index: 100; /* Ensure it stays on top */
-  cursor: pointer; /* Change cursor to pointer */
-}
-
-.full-screen-image.active {
-  opacity: 1;
-}
-
-@keyframes growAnimation {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(20);
-    opacity: 0;
-  }
-}
-
-.image.growing {
-  animation: growAnimation 0.5s forwards;
-  z-index: 99;
+  width: 40vmin;
+  height: 56vmin;
+  object-fit: cover;
+  object-position: 100% center;
+  cursor: pointer;
 }
