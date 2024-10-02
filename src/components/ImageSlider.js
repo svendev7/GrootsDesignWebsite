@@ -63,12 +63,14 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
             window.ontouchmove = null;
         };
     }, []);
-
+    
     const handleImageClick = (src, index) => {
         setSelectedIndex(index);
         onImageClick(src);
     };
-
+    const handleFullScreenMouseDown = (e) => {
+        onImageClick(selectedImage); // Close the full-screen image
+    };
     return (
         <>
             <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
@@ -102,6 +104,8 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
                                 zIndex: 999,
                             }}
                             onClick={() => onImageClick(selectedImage)}
+                            onMouseDown={handleFullScreenMouseDown}
+                            onTouchStart={handleFullScreenMouseDown}
                         />
                         <motion.div
                             style={{
