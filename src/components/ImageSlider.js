@@ -9,6 +9,14 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
     useEffect(() => {
         const track = trackRef.current;
 
+
+        if (!track.dataset.percentage) {
+            track.dataset.percentage = "0";
+        }
+        if (!track.dataset.prevPercentage) {
+            track.dataset.prevPercentage = "0";
+        }
+
         const handleOnDown = (e) => {
             track.dataset.mouseDownAt = e.clientX;
         };
@@ -34,17 +42,24 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
                 {
                     transform: `translate(${nextPercentage}%, -50%)`
                 },
-                { duration: 1200, fill: "forwards" }
+                { duration: 1200, easing: 'ease-out', fill: 'forwards' }
             );
-
+            
             for (const image of track.getElementsByClassName("image")) {
+                image.style.willChange = 'object-position, transform'; 
+            
                 image.animate(
                     {
-                        objectPosition: `${100 + nextPercentage}% center`
+                        objectPosition: `${100 + nextPercentage}% center`, 
+
                     },
-                    { duration: 1200, fill: "forwards" }
+                    { 
+                        duration: 1200, 
+                        easing: 'ease-out', 
+                        fill: 'forwards' 
+                    }
                 );
-            }
+            } 
         };
 
         window.onmousedown = (e) => handleOnDown(e);
@@ -83,6 +98,7 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
                         alt={`Image ${index + 1}`}
                         draggable="false"
                         onClick={() => handleImageClick(`/images/${index + 1}.jpg`, index)}
+                        whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
                     />
                 ))}
             </div>
@@ -90,17 +106,16 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
                 {isFullScreen && (
                     <>
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{ opacity: 0, scale: 0.9 }} // Start at a smaller size to avoid flicker
+                            animate={{ opacity: 1, scale: 1 }} // Grow into fullscreen
+                            exit={{ opacity: 0, scale: 0.9 }} // Shrink out of fullscreen
+                            transition={{ duration: 0.5 }}
                             style={{
                                 position: 'fixed',
                                 top: 0,
                                 left: 0,
                                 right: 0,
                                 bottom: 0,
-                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
                                 zIndex: 999,
                             }}
                             onClick={() => onImageClick(selectedImage)}
@@ -119,6 +134,7 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
                                 alignItems: 'center',
                                 zIndex: 1000,
                                 pointerEvents: 'none',
+                                willChange: 'transform, opacity'
                             }}
                         >
                             <motion.img
@@ -130,7 +146,9 @@ const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
                                     height: '100vh',
                                     objectFit: 'cover',
                                     objectPosition: 'center',
+                                    willChange: 'transform, opacity',
                                 }}
+                            
                             />
                         </motion.div>
                     </>
