@@ -65,7 +65,7 @@
     position: absolute; /* Position the button above the background image */
     top: 85%; /* Adjust this value to control the button's vertical placement */
     padding: 15px 30px;
-    background-color: #ff69b4; /* Pink color */
+    background-color: rgb(94, 47, 38); /* Dark color */
     border: none;
     color: white;
     font-size: 18px;
@@ -78,6 +78,62 @@
   }
   
   .contact-button:hover {
-    background-color: #ff3385; /* Darker pink on hover */
+    background-color: rgb(94, 47, 38); /* Same color for hover to maintain accessibility */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .stripe-text {
+      font-size: 40px; /* Scale down text */
+    }
+  
+    .contact-button {
+      top: 90%; /* Adjust button position for smaller screens */
+      padding: 10px 20px;
+      font-size: 14px; /* Scale down font size */
+    }
+  
+    .overlay-image {
+      transform: translate(-50%, -50%) scale(0.4); /* Scale overlay image down */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .stripe {
+      height: 80px; /* Reduce stripe height */
+    }
+  
+    .stripe-text {
+      font-size: 30px; /* Further scale down text */
+    }
+  
+    .contact-button {
+      padding: 8px 16px;
+      font-size: 12px;
+    }
+  
+    .overlay-image {
+        position: absolute;
+        top: 41%; /* Moves the image up from the center */
+        left: 50%; /* Centers the image horizontally */
+        transform: translate(-50%, -50%); /* Centers the image */
+        width: 30%; /* Use a percentage width to make it responsive */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: contain; /* Prevent distortion */
+        z-index: 1; /* Ensures it's above the background image */
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .overlay-image {
+          width: 50%; /* Reduce the width on smaller screens */
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .overlay-image {
+          width: 80%; /* Further reduce the width on mobile devices */
+        }
+      }
   }
   
