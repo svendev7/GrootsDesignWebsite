@@ -1,160 +1,220 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import '../styles/ImageSliderStyles.css';
 
-const ImageSlider = ({ onImageClick, isFullScreen, selectedImage }) => {
+const ImageSlider = () => {
     const trackRef = useRef(null);
+    const [isFullScreen, setIsFullScreen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(null);
+    const [imageTransitionState, setImageTransitionState] = useState({
+        rect: null,
+        objectPosition: '100% center',
+        scale: 1
+    });
+
+    const [sliderState, setSliderState] = useState({
+        mouseDownAt: 0,
+        prevPercentage: 0,
+        percentage: 0
+    });
 
     useEffect(() => {
         const track = trackRef.current;
-
-
-        if (!track.dataset.percentage) {
-            track.dataset.percentage = "0";
-        }
-        if (!track.dataset.prevPercentage) {
-            track.dataset.prevPercentage = "0";
-        }
+        if (!track) return;
 
         const handleOnDown = (e) => {
-            track.dataset.mouseDownAt = e.clientX;
+            if (isFullScreen) return;
+            
+            const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
+            setSliderState(prev => ({
+                ...prev,
+                mouseDownAt: clientX
+            }));
         };
 
         const handleOnUp = () => {
-            track.dataset.mouseDownAt = "0";
-            track.dataset.prevPercentage = track.dataset.percentage;
+            if (isFullScreen) return;
+            
+            setSliderState(prev => ({
+                ...prev,
+                mouseDownAt: 0,
+                prevPercentage: prev.percentage
+            }));
         };
 
         const handleOnMove = (e) => {
-            if (track.dataset.mouseDownAt === "0") return;
+            if (isFullScreen) return;
+            
+            const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
+            
+            if (sliderState.mouseDownAt === 0) return;
 
-            const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX;
+            const mouseDelta = sliderState.mouseDownAt - clientX;
             const maxDelta = window.innerWidth / 2;
 
             const percentage = (mouseDelta / maxDelta) * -100;
-            const nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage;
+            const nextPercentageUnconstrained = sliderState.prevPercentage + percentage;
             const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
 
-            track.dataset.percentage = nextPercentage;
+            setSliderState(prev => ({
+                ...prev,
+                percentage: nextPercentage
+            }));
 
-            track.animate(
-                {
-                    transform: `translate(${nextPercentage}%, -50%)`
-                },
-                { duration: 1200, easing: 'ease-out', fill: 'forwards' }
-            );
-            
-            for (const image of track.getElementsByClassName("image")) {
-                image.style.willChange = 'object-position, transform'; 
-            
-                image.animate(
+            if (track) {
+                track.animate(
                     {
-                        objectPosition: `${100 + nextPercentage}% center`, 
-
+                        transform: `translate(${nextPercentage}%, -50%)`
                     },
-                    { 
-                        duration: 1200, 
-                        easing: 'ease-out', 
-                        fill: 'forwards' 
-                    }
+                    { duration: 1200, fill: 'forwards' }
                 );
-            } 
+
+                const images = track.getElementsByClassName("image");
+                Array.from(images).forEach((image) => {
+                    image.animate(
+                        {
+                            objectPosition: `${100 + nextPercentage}% center`
+                        },
+                        { 
+                            duration: 1200, 
+                            fill: 'forwards' 
+                        }
+                    );
+                });
+            }
         };
 
-        window.onmousedown = (e) => handleOnDown(e);
-        window.ontouchstart = (e) => handleOnDown(e.touches[0]);
-        window.onmouseup = handleOnUp;
-        window.ontouchend = handleOnUp;
-        window.onmousemove = (e) => handleOnMove(e);
-        window.ontouchmove = (e) => handleOnMove(e.touches[0]);
+        window.addEventListener('mousedown', handleOnDown);
+        window.addEventListener('mousemove', handleOnMove);
+        window.addEventListener('mouseup', handleOnUp);
+        
+        window.addEventListener('touchstart', handleOnDown);
+        window.addEventListener('touchmove', handleOnMove);
+        window.addEventListener('touchend', handleOnUp);
 
         return () => {
-            window.onmousedown = null;
-            window.ontouchstart = null;
-            window.onmouseup = null;
-            window.ontouchend = null;
-            window.onmousemove = null;
-            window.ontouchmove = null;
+            window.removeEventListener('mousedown', handleOnDown);
+            window.removeEventListener('mousemove', handleOnMove);
+            window.removeEventListener('mouseup', handleOnUp);
+            
+            window.removeEventListener('touchstart', handleOnDown);
+            window.removeEventListener('touchmove', handleOnMove);
+            window.removeEventListener('touchend', handleOnUp);
         };
-    }, []);
-    
-    const handleImageClick = (src, index) => {
+    }, [isFullScreen, sliderState]);
+
+    const handleImageClick = (e, src, index) => {
+        // If already in full screen and clicking the same image, close it
+        if (isFullScreen && selectedImage === src) {
+            setIsFullScreen(false);
+            setSelectedImage(null);
+            return;
+        }
+
+        // Capture the exact state of the image at click
+        const imgElement = e.target;
+        const rect = imgElement.getBoundingClientRect();
+        
+        // Get computed style to capture exact object-position
+        const computedStyle = window.getComputedStyle(imgElement);
+        const objectPosition = computedStyle.objectPosition;
+
+        setImageTransitionState({
+            rect: {
+                top: rect.top,
+                left: rect.left,
+                width: rect.width,
+                height: rect.height
+            },
+            objectPosition,
+            scale: 1.05  // Matches the hover scale
+        });
+
+        // Set full screen state
+        setSelectedImage(src);
         setSelectedIndex(index);
-        onImageClick(src);
+        setIsFullScreen(true);
     };
-    const handleFullScreenMouseDown = (e) => {
-        onImageClick(selectedImage); // Close the full-screen image
-    };
+
+    const images = Array.from({ length: 10 }, (_, index) => `/images/${index + 1}.jpg`);
+
     return (
-        <>
-            <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
-                {Array.from({ length: 10 }, (_, index) => (
+        <LayoutGroup>
+            <div 
+                id="image-track" 
+                ref={trackRef} 
+                style={{ 
+                    transform: `translate(${sliderState.percentage}%, -50%)` 
+                }}
+            >
+                {images.map((src, index) => (
                     <motion.img
-                        key={index}
                         layoutId={`image-${index}`}
+                        key={src}
                         className="image"
-                        src={`/images/${index + 1}.jpg`}
+                        src={src}
                         alt={`Image ${index + 1}`}
                         draggable="false"
-                        onClick={() => handleImageClick(`/images/${index + 1}.jpg`, index)}
-                        whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
+                        onClick={(e) => handleImageClick(e, src, index)}
+                        whileHover={{ scale: 1.05 }}
+                        style={{
+                            cursor: 'pointer',
+                            willChange: 'transform',
+                        }}
                     />
                 ))}
             </div>
+
             <AnimatePresence>
-                {isFullScreen && (
-                    <>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }} // Start at a smaller size to avoid flicker
-                            animate={{ opacity: 1, scale: 1 }} // Grow into fullscreen
-                            exit={{ opacity: 0, scale: 0.9 }} // Shrink out of fullscreen
-                            transition={{ duration: 0.5 }}
+                {isFullScreen && imageTransitionState.rect && (
+                    <motion.div
+                        initial={{
+                            position: 'fixed',
+                            top: imageTransitionState.rect.top,
+                            left: imageTransitionState.rect.left,
+                            width: imageTransitionState.rect.width,
+                            height: imageTransitionState.rect.height,
+                            scale: imageTransitionState.scale,
+                            backgroundColor: 'black',
+                            zIndex: 1000,
+                            overflow: 'hidden'
+                        }}
+                        animate={{
+                            top: 0,
+                            left: 0,
+                            width: '100vw',
+                            height: '100vh',
+                            scale: 1
+                        }}
+                        exit={{
+                            top: imageTransitionState.rect.top,
+                            left: imageTransitionState.rect.left,
+                            width: imageTransitionState.rect.width,
+                            height: imageTransitionState.rect.height,
+                            scale: imageTransitionState.scale
+                        }}
+                        transition={{
+                            duration: 0.4,
+                            type: "tween"
+                        }}
+                        onClick={() => setIsFullScreen(false)}
+                    >
+                        <motion.img
+                            src={selectedImage}
                             style={{
-                                position: 'fixed',
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                zIndex: 999,
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                objectPosition: imageTransitionState.objectPosition,
+                                transform: `scale(${imageTransitionState.scale})`,
+                                transformOrigin: 'center center'
                             }}
-                            onClick={() => onImageClick(selectedImage)}
-                            onMouseDown={handleFullScreenMouseDown}
-                            onTouchStart={handleFullScreenMouseDown}
                         />
-                        <motion.div
-                            style={{
-                                position: 'fixed',
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                zIndex: 1000,
-                                pointerEvents: 'none',
-                                willChange: 'transform, opacity'
-                            }}
-                        >
-                            <motion.img
-                                layoutId={`image-${selectedIndex}`}
-                                src={selectedImage}
-                                alt="Full Screen"
-                                style={{
-                                    width: '100vw',
-                                    height: '100vh',
-                                    objectFit: 'cover',
-                                    objectPosition: 'center',
-                                    willChange: 'transform, opacity',
-                                }}
-                            
-                            />
-                        </motion.div>
-                    </>
+                    </motion.div>
                 )}
             </AnimatePresence>
-        </>
+        </LayoutGroup>
     );
 };
 
