@@ -1,0 +1,83 @@
+/* Reset margin and padding, ensuring full-height layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .App {
+    text-align: center;
+    height: 100%;
+  }
+  
+  .App-header {
+    position: relative;
+    height: 100vh; /* Full screen height */
+    width: 100%; /* Full screen width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack elements vertically */
+  }
+  
+  .full-screen-image {
+    position: absolute; /* Position the image behind other elements */
+    width: 100vw; /* Full screen width */
+    height: 100vh; /* Full screen height */
+    object-fit: cover; /* Ensures the image covers the screen */
+    z-index: -1; /* Ensures it stays behind the button and other content */
+  }
+  
+  .overlay-image {
+    position: absolute;
+    top: 41%; /* Moves the image up from the center */
+    left: 50%; /* Centers the image horizontally */
+    transform: translate(-50%, -50%) scale(0.52); /* Shifts the image back by 50% of its size and scales it */
+    object-fit: contain; /* Prevents distortion */
+    z-index: 1; /* Ensures it's above the background image */
+  }
+  
+  .stripe {
+    position: absolute;
+    top: 65%; /* Position the stripe */
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: rgb(202, 197, 190); /* Beige color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Ensures it's above the background image and the overlay image */
+  }
+  
+  .stripe-text {
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+  }
+  
+  .contact-button {
+    position: absolute; /* Position the button above the background image */
+    top: 85%; /* Adjust this value to control the button's vertical placement */
+    padding: 15px 30px;
+    background-color: #ff69b4; /* Pink color */
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    z-index: 3; /* Ensures the button is above all other elements */
+  }
+  
+  .contact-button:hover {
+    background-color: #ff3385; /* Darker pink on hover */
+  }
+  
