@@ -128,7 +128,7 @@ const ImageSlider = () => {
                 height: rect.height
             },
             objectPosition,
-            scale: 1.05  // Matches the hover scale
+            scale: 1  // Matches the hover scale
         });
 
         // Set full screen state
@@ -157,7 +157,7 @@ const ImageSlider = () => {
                         alt={`Image ${index + 1}`}
                         draggable="false"
                         onClick={(e) => handleImageClick(e, src, index)}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, duration: 2}}
                         style={{
                             cursor: 'pointer',
                             willChange: 'transform',

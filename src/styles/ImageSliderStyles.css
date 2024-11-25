@@ -1,7 +1,8 @@
 body {
   height: 100vh;
-  background-color: rgb(10, 10, 10);
-  margin: 0rem;
+  width: 100vw;
+  background-color: black;
+  margin: 0;
   overflow: hidden;
 }
 
@@ -11,10 +12,9 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(0%, -50%); 
-  user-select: none; 
-  white-space: nowrap;
-  padding-block: 4vmin;
+  transform: translate(0%, -50%);
+  user-select: none;
+  will-change: transform;
 }
 
 #image-track > .image {
@@ -23,39 +23,28 @@ body {
   object-fit: cover;
   object-position: 100% center;
   cursor: pointer;
-  transition: 
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-  border-radius: 1vmin;
 }
 
-#image-track > .image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+.image-container {
+  position: relative;
+  display: inline-block;
+  text-align: center;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  #image-track > .image {
-      width: 60vmin;
-      height: 40vmin;
-  }
+.image-container .hover-text {
+  position: absolute;
+  bottom: -4vmin;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-/* Scrollbar Styling (Optional) */
-::-webkit-scrollbar {
-  width: 8px;
+.image-container:hover .hover-text {
+  opacity: 1;
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(30, 30, 30, 0.1);
-}
 
-::-webkit-scrollbar-thumb {
-  background: rgba(100, 100, 100, 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 100, 100, 0.5);
-}
