@@ -1,5 +1,3 @@
-voor animations todo:
+Website for GrootsDesign, https://www.grootsdesign.com
 
-fullscreen image moet niet werken zols hij nu werkt, nu word een nieuwe inage gepakt vanaf de size van de clicked image en hij moet de clicked image juist resizen naar fullscreen, op hover moet text boven en onder het plaatje verschijnen voor projectnaam locatie datum etc.
-
-bij klikken op een plaatje, de slider hierna toe moven en dan pas de fullscreen animation gooien, na klikken op plaatje kan je naar beneden scrollen of op plusje klikken dan animate er zo text nasr boven die dan de image weg drukt krijg jeninfo over het project
+![logo](https://github.com/user-attachments/assets/dc1e62e1-d2fb-4882-bfeb-a6a21b7344bc)
