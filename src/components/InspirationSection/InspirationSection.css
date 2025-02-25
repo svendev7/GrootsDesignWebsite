@@ -1,0 +1,111 @@
+
+
+.new-section {
+    padding: 50px 0;
+  }
+  
+  /* Inspiration Section */
+  .inspiration-section {
+    background-color: #382e2d;
+    height: 450px;
+    padding: 30px;
+    margin-top: -50px;
+    padding-bottom: 50px;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+  .inspiration-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .inspiration-title {
+    color: white;
+    font-size: 42px;
+    padding-top: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .inspiration-subtitle {
+    color: white;
+    font-size: 27px;
+    margin-bottom: 50px;
+  }
+  
+  .contact-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding-top: 20px;
+    font-size: 20px;
+  }
+  
+  .contact-box {
+    border: 2px solid white;
+    padding: 30px;
+    color: white;
+    text-decoration: none;
+    width: 650px;
+    text-align: center;
+    transition: all 0.3s ease;
+    letter-spacing: 0.75px;
+  }
+
+
+  .contact-box:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Instagram Section */
+  .instagram-section {
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .instagram-title {
+    font-size: 36px;
+    font-family: 'Roserita', sans-serif;
+    color: black;
+    margin-bottom: 50px;
+    letter-spacing: -3px;
+  }
+  
+  .instagram-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .instagram-grid img {
+    height: 600px;
+    width: calc(33.33% - 20px);
+    object-fit: cover;
+  }
+  
+  .instagram-button {
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    background-color: #382e2d;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 2px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .instagram-button:hover {
+    background-color: #2a2221;
+  }
+  
+  .instagram-icon {
+    font-size: 20px;
+  }

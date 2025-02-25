@@ -1,0 +1,304 @@
+
+/* Font Face */
+@font-face {
+  font-family: 'Roserita';
+  src: url('/public/fonts/Roseritta.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  scrollbar-color: #382e2d rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Main Container */
+.home {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.homepage-content {
+  flex: 1; /* This makes it grow to push footer down */
+}
+/* Header */
+.home-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 60px;
+  background-color: #382e2d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  margin-left: 20px;
+}
+
+.header-nav {
+  display: flex;
+  width: 800px;
+  position: absolute;
+  right: -200px;
+}
+
+.nav-button {
+  text-decoration: none;
+  color: white;
+  font-family: 'Mukta Mahee', sans-serif;
+  font-weight: regular;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 17px;
+  transition: color 0.3s ease;
+}
+
+.nav-button:hover {
+  color: black;
+}
+
+/* Hero Image Section */
+.image-container {
+  position: relative;
+  width: 100vw;
+  height: 860px;
+  background-image: url('/public/images/main2.png');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(202, 197, 190, 0.54);
+  z-index: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.overlay-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* Text Section */
+.text-section {
+  width: 100vw;
+  height: 625px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.text-section h2 {
+  font-family: 'Roserita', sans-serif;
+  font-weight: normal;
+  font-size: 65px;
+  margin-bottom: 20px;
+  letter-spacing: 0;
+  word-spacing: -6px;
+  line-height: 1.5;
+}
+
+.text-section h2 br + span {
+  font-size: 65px;
+  margin-left: -45px;
+}
+
+/* Text Blocks */
+.text-blocks {
+  letter-spacing: 0.01px;
+  display: flex;
+  width: 74%;
+  justify-content: space-between;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.text-block {
+  text-align: left;
+  width: 50%;
+  padding: 20px;
+}
+
+.text-block1 {
+  text-align: left;
+  width: 50%;
+  padding: 20px;
+  margin-top: -9.7px;
+}
+
+.text-block2 {
+  text-align: left;
+  width: 50%;
+  padding: 20px;
+  margin-top: -58px;
+}
+
+.text-block p, 
+.text-block1 p, 
+.text-block2 p {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: regular;
+}
+
+.span1 {
+  width: 50%;
+  color: rgb(120, 70, 59);
+}
+
+.span2 {
+  display: block;
+  width: 50%;
+  color: rgb(120, 70, 59);
+}
+
+/* Homepage Content and Projects Section */
+.homepage-content {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.projecten-block {
+  height: 800px;
+  width: 100%;
+  background-color: #382e2d;
+  overflow: hidden;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 -4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.projecten-title {
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  margin-top: 50px;
+  word-spacing: -6px;
+}
+/* Reviews Section */
+.reviews-block {
+  height: 600px;
+  width: 100%;
+  background-color: #e7e4e1;
+  overflow: hidden;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 -4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.reviews-title {
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: #382e2d;
+  margin-top: 50px;
+  word-spacing: -6px;
+}
+
+/* Wat We Doen Section */
+.watwedoen-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 60px;
+  padding: 20px;
+  margin-right: 100px;
+  margin-bottom: 50px;
+}
+
+.watwedoen-image {
+  width: 35%;
+  height: 81%;
+  position: relative;
+  margin-left: 100px;
+  max-width: 100%; /* Prevent image from getting too wide */
+  max-height: 1000px; /* Adjust max height to fit the block */
+}
+
+.watwedoen-image img {
+  width: 100%;
+  height: 100%; /* Adjust height to fit the container */
+  object-fit: cover;
+  max-width: 100%; /* Prevent image from scaling too wide */
+  max-height: 100%; /* Prevent image from scaling too tall */
+}
+
+.watwedoen-content {
+  width: 50%;
+  text-align: left;
+  position: relative;
+  padding-left: 0px;
+  padding-right: 50px;
+}
+
+.watwedoen-title {
+  font-family: 'Roserita', sans-serif; /* 'Roserita' */
+  font-size: 50px;
+  font-weight: normal;
+  text-align: center;
+  color: #382e2d;
+  letter-spacing: -4px;
+  line-height: 1.5;
+  margin-top: -20px;
+}
+
+.watwedoen-text {
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.watwedoen-button {
+  background-color: #382e2d;
+  color: white;
+  font-size: 20px;
+  font-family: 'Mukta Mahee', sans-serif;
+  padding: 15px 30px;
+  border: none;
+  width: 22.6%;
+  text-decoration: none;
+  margin-top: 200px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block; /* Center button using block display */
+  margin-left: auto;
+  margin-right: auto; /* Center the button */
+}
+
+.watwedoen-button:hover {
+  color: black
+}
+

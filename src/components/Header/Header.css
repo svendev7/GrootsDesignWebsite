@@ -1,0 +1,43 @@
+.home-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    background-color: #382e2d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+  }
+  
+  .header-nav {
+    display: flex;
+    width: 800px;
+    position: absolute;
+    right: -200px;
+  }
+  
+  .nav-button {
+    text-decoration: none;
+    color: white;
+    font-family: 'Mukta Mahee', sans-serif;
+    font-weight: regular;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 17px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    color: black;
+  }
