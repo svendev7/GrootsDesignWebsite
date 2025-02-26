@@ -15,6 +15,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const scrollbarThumbRef = useRef(null);
     const [maxPercentage, setMaxPercentage] = useState(-10);
     const [posMulti, setPosMulti] = useState(0.1);
+    const imageRefs = useRef([]);
     const [imageTransitionState, setImageTransitionState] = useState({
         rect: startFullScreen ? {
             top: 0,
@@ -32,7 +33,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         percentage: 0
     });
     
-    const imageRefs = useRef([]);
+
     useEffect(() => {
         const updateVariablesBasedOnScreenWidth = () => {
             const width = window.innerWidth;
@@ -174,22 +175,21 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             // i swear to god I FUCKING HATE THIS WHOLE FUCKING COMPONENT it WILL not FUCKING resize this is my only solution and its FUCKING SHIT FUCK this
             if (height >= 1080) {
                 maxPercentage;
+            } else if (width <= 1000) {
+                maxPercentage;
             } else {
-                maxPercentage += 30;
+                maxPercentage;
             }
     
             setMaxPercentage(maxPercentage);
             setPosMulti(posMulti);
         };
     
-        // Call the function initially
         updateVariablesBasedOnScreenWidth();
     
-        // Add resize listener to update values dynamically
         window.addEventListener("resize", updateVariablesBasedOnScreenWidth);
         document.addEventListener("fullscreenchange", updateVariablesBasedOnScreenWidth);
 
-        // Cleanup
         return () => {
             window.removeEventListener("resize", updateVariablesBasedOnScreenWidth);
             document.removeEventListener("fullscreenchange", updateVariablesBasedOnScreenWidth);
@@ -248,8 +248,6 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         });
     };
     
-
-
     useEffect(() => {
         const track = trackRef.current;
         if (!track) return;
@@ -327,36 +325,39 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         if (!scrollbar || !thumb) return;
 
         const scrollbarRect = scrollbar.getBoundingClientRect();
-        const clickPosition = (e.clientX - scrollbarRect.left) / scrollbarRect.width;
-        const percentage = Math.max(Math.min(clickPosition * -100, 0), -97);
+        const thumbWidth = thumb.offsetWidth;
+        const clickPosition = (e.clientX - scrollbarRect.left - thumbWidth/2) / (scrollbarRect.width - thumbWidth);
+        const percentage = Math.max(Math.min(clickPosition * maxPercentage, 0), maxPercentage);
 
-        setSliderState(prev => ({
-            ...prev,
-            percentage: percentage,
-            prevPercentage: percentage
-        }));
+    setSliderState(prev => ({
+        ...prev,
+        percentage: percentage,
+        prevPercentage: percentage
+    }));
 
-        updateTrackPosition(percentage);
-    };
+    updateTrackPosition(percentage);
+};
 
     const handleScrollbarMouseMove = (e) => {
         if (!isDraggingScrollbar || isFullScreen) return;
 
         const scrollbar = scrollbarRef.current;
-        if (!scrollbar) return;
+    const thumb = scrollbarThumbRef.current;
+    if (!scrollbar || !thumb) return;
 
-        const scrollbarRect = scrollbar.getBoundingClientRect();
-        const position = (e.clientX - scrollbarRect.left) / scrollbarRect.width;
-        const percentage = Math.max(Math.min(position * -100, 0), -97);
+    const scrollbarRect = scrollbar.getBoundingClientRect();
+    const thumbWidth = thumb.offsetWidth;
+    const position = (e.clientX - scrollbarRect.left - thumbWidth/2) / (scrollbarRect.width - thumbWidth);
+    const percentage = Math.max(Math.min(position * maxPercentage, 0), maxPercentage);
 
-        setSliderState(prev => ({
-            ...prev,
-            percentage: percentage,
-            prevPercentage: percentage
-        }));
+    setSliderState(prev => ({
+        ...prev,
+        percentage: percentage,
+        prevPercentage: percentage
+    }));
 
-        updateTrackPosition(percentage);
-    };
+    updateTrackPosition(percentage);
+};
 
     const handleScrollbarMouseUp = () => {
         setIsDraggingScrollbar(false);
@@ -374,7 +375,6 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
 
     const handleImageClick = (e, src, index) => {
         if (isDragging) return;
-        // window.location.href = index;
     };
 
     const handleFullScreenClose = () => {
@@ -427,10 +427,9 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 style={{
                     position: 'relative',
                     width: '100%',
-                    top: '-45px',
                     height: '15px', 
                     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                    marginTop: '40px',
+                    marginTop: '20px',
                     cursor: 'pointer',
                     borderRadius: '5px',
                 }}
@@ -440,8 +439,8 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                     style={{
                         position: 'absolute',
                         top: 0,
-                        left: `${Math.abs(sliderState.percentage / (images.length - 2) * 37.15) * 0.2}%`,
-                        width:'20%',
+                        left: `${(Math.abs(sliderState.percentage) / Math.abs(maxPercentage)) * 88}%`,
+                        width: `${100 / (images.length - 1)}%`,
                         height: '100%',
                         backgroundColor: 'rgba(255, 255, 255, 0.7)',
                         borderRadius: '5px',

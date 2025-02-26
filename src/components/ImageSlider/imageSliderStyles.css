@@ -8,11 +8,12 @@
     user-select: none;
     will-change: transform;
     transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    
+    margin-bottom: 135px !important
   }
   
   .image-scrollbar {
     cursor: default; 
+    margin-top: 20px !important
     }
   #image-track > .image {
     width: 40vmin; 
@@ -24,29 +25,72 @@
     cursor: pointer;
     transition: object-position 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
-  
-  @media (max-width: 768px) {
+  @media (max-width: 930px) {
+    #image-track {
+        top: 45%; 
+        margin-bottom: 120px !important;
+    }
+    .image-scrollbar {
+        margin-top: 20px !important;
+        height: 15px !important;
+    }
+}  
+@media (max-width: 900px) {
+  #image-track {
+      top: 45%; 
+      margin-bottom: 135px !important;
+  }
+  .image-scrollbar {
+      margin-top: 20px !important;
+      height: 15px !important;
+  }
+}  
+@media (max-width: 850px) {
+  #image-track {
+      top: 45%; 
+      margin-bottom: 145px !important;
+  }
+  .image-scrollbar {
+      margin-top: 20px !important;
+      height: 15px !important;
+  }
+} 
+@media (max-width: 810px) {
+  #image-track {
+      top: 45%; 
+      margin-bottom: 145px !important;
+  }
+  .image-scrollbar {
+      margin-top: 20px !important;
+      height: 15px !important;
+  }
+} 
+@media (max-width: 768px) {
     #image-track > .image {
       width: 50vmin;
       height: 70vmin;
       max-width: 438px;
       max-height: 605px;
+      top: 45%; 
+      margin-bottom: 50px !important;
     }
     .image-scrollbar {
       margin-top: 20px !important;
-      height: 12px !important;
+      height: 24px !important;
   }
 }
-  @media (max-width: 699px) and (max-width: 501px) {
+  @media (max-width: 699px) {
     #image-track > .image {
       width: 65vmin;
       height: 85vmin;
       max-width: 438px;
       max-height: 605px;
+      top: 45%; 
+      margin-bottom: 30px !important;
     }
     .image-scrollbar {
-      margin-top: 20px !important;
-      height: 12px !important;
+      margin-top: 15px !important;
+      height: 24px !important;
   }
 }
   @media (max-width: 500px) {
@@ -55,10 +99,68 @@
       height: 125vmin;
       max-width: 438px;
       max-height: 605px;
+      top: 45%; 
+      margin-bottom: 10px !important;
     }
     .image-scrollbar {
-      margin-top: 20px !important;
-      height: 12px !important;
+      margin-top: 10px !important;
+      height: 36px !important;
   }
+}
+@media (min-width: 320px) {
+  #image-track > .image {
+    width: 60vmin;
+    height: 125vmin;
+    max-width: 438px;
+    max-height: 605px;
+    top: 45%; 
+    margin-bottom: -20px !important;
+  }
+  .image-scrollbar {
+    margin-top: 215px !important;
+    height: 32px !important;
+}
+}
+@media (min-width: 400px) {
+  #image-track > .image {
+    width: 60vmin;
+    height: 125vmin;
+    max-width: 438px;
+    max-height: 605px;
+    top: 45%; 
+    margin-bottom: -25px !important;
+  }
+  .image-scrollbar {
+    margin-top: 1px !important;
+    height: 26px !important;
+}
+}
+@media (min-width: 450px) {
+  #image-track > .image {
+    width: 60vmin;
+    height: 125vmin;
+    max-width: 438px;
+    max-height: 605px;
+    top: 45%; 
+    margin-bottom: -45px !important;
+  }
+  .image-scrollbar {
+    margin-top: 55px !important;
+    height: 18px !important;
+}
+}
+@media (min-width: 475px) {
+  #image-track > .image {
+    width: 60vmin;
+    height: 125vmin;
+    max-width: 438px;
+    max-height: 605px;
+    top: 45%; 
+    margin-bottom: 75px !important;
+  }
+  .image-scrollbar {
+    margin-top: -175px !important;
+    height: 18px !important;
+}
 }
 

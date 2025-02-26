@@ -189,7 +189,7 @@ html, body {
 }
 
 .projecten-block {
-  height: 800px;
+  height: 850px;
   width: 100%;
   background-color: #382e2d;
   overflow: hidden;
@@ -200,7 +200,8 @@ html, body {
   font-size: 40px;
   font-weight: bold;
   color: rgb(255, 255, 255);
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 60px;
   word-spacing: -6px;
 }
 
@@ -227,7 +228,7 @@ html, body {
   margin-top: 60px;
   padding: 20px;
   margin-right: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 110px;
 }
 
 .watwedoen-image {
