@@ -72,7 +72,7 @@ function Home() {
           </div>
         </motion.div>
         <div className="homepage-content">
-        {windowWidth <= 2400 && windowHeight >= 900 && windowHeight <= 1100 && <ImageSlider />}
+        {windowWidth <= 2400 && <ImageSlider />}
 
             <motion.div
               ref={reviewsBlockRef}
