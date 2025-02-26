@@ -48,7 +48,7 @@ function Home() {
               <p>Of het nu gaat om het kiezen van kleuren, materialen of het realiseren van maatwerkoplossingen, bij GrootsDesign gaat het altijd om een harmonieus totaalplaatje.</p>
             </div>
           </div>
-          <div className="text-blocks second-row">
+          <div className="text-blocks-second-row">
             <div className="text-block1">
               <p>We vertalen jouw wensen naar een interieur waarin stijl en comfort hand in hand gaan. Met aandacht voor de kleinste details en een passie voor kwaliteit ontwerpen we ruimtes die verrassen en blijven inspireren.</p>
             </div>

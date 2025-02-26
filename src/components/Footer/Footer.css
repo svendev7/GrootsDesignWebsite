@@ -88,7 +88,6 @@
   .copyright {
     font-size: 14px;
     color: #382e2d;
-    /* Remove button styles */
     background: none;
     border: none;
     padding: 0;
@@ -99,5 +98,5 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px; /* Add some spacing between items */
+    gap: 20px; 
   }

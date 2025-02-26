@@ -1,10 +1,7 @@
-
-
-.new-section {
+  .new-section {
     padding: 50px 0;
   }
   
-  /* Inspiration Section */
   .inspiration-section {
     background-color: #382e2d;
     height: 450px;
@@ -59,7 +56,6 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
   
-  /* Instagram Section */
   .instagram-section {
     padding: 50px 0;
     text-align: center;
