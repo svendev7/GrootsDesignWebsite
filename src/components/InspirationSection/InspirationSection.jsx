@@ -29,9 +29,9 @@ const InspirationSection = () => {
       </div>
       <div className="instagram-section">
         <h2 className="instagram-title">
-          K I J K J E&nbsp;&nbsp; A C H T E R&nbsp;&nbsp; D E&nbsp;&nbsp; S C H E R M E N?
+          KIJKJE&nbsp;&nbsp; ACHTER&nbsp;&nbsp; DE&nbsp;&nbsp; SCHERMEN?
           <br />
-          V O L G&nbsp;&nbsp; O N S&nbsp;&nbsp; O P I N S T A G R A M&nbsp;&nbsp; @ G R O O T S D E S I G N
+          VOLG&nbsp;&nbsp; ONS&nbsp;&nbsp; OP INSTAGRAM&nbsp;&nbsp; @GROOTSDESIGN
         </h2>
         
         <div className="instagram-grid">

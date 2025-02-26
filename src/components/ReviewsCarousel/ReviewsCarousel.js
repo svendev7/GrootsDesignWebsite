@@ -7,17 +7,17 @@ import "./ReviewsCarousel.css"
 const reviews = [
   {
     id: 1,
-    text: "Van begin tot eind was het een fijne ervaring om <br /> met GrootsDesign samen te werken. Ilse combineert professionaliteit met een persoonlijke aanpak, waardoor we ons direct op ons gemak voelden. Ze heeft een uniek talent om ruimtes tot leven te brengen met een perfect samenspel van kleuren, materialen en licht. Ons huis voelt eindelijk als een plek waar we helemaal onszelf kunnen zijn!",
+    text: "Van begin tot eind was het een fijne ervaring om met GrootsDesign samen te werken. Ilse combineert professionaliteit met een persoonlijke aanpak, waardoor we ons direct op ons gemak voelden. Ze heeft een uniek talent om ruimtes tot leven te brengen met een perfect samenspel van kleuren, materialen en licht. Ons huis voelt eindelijk als een plek waar we helemaal onszelf kunnen zijn!",
     author: "-S A N N E ",
   },
   {
     id: 2,
-    text: "Van begin tot eind was het een fijne ervaring om <br /> met GrootsDesign samen te werken. Ilse combineert professionaliteit met een persoonlijke aanpak, waardoor we ons direct op ons gemak voelden. Ze heeft een uniek talent om ruimtes tot leven te brengen met een perfect samenspel van kleuren, materialen en licht. Ons huis voelt eindelijk als een plek waar we helemaal onszelf kunnen zijn!",
+    text: "Van begin tot eind was het een fijne ervaring om met GrootsDesign samen te werken. Ilse combineert professionaliteit met een persoonlijke aanpak, waardoor we ons direct op ons gemak voelden. Ze heeft een uniek talent om ruimtes tot leven te brengen met een perfect samenspel van kleuren, materialen en licht. Ons huis voelt eindelijk als een plek waar we helemaal onszelf kunnen zijn!",
     author: "- A N N E M I E K E"
   },
   {
     id: 3,
-    text: "Van begin tot eind was het een fijne ervaring om <br /> met GrootsDesign samen te werken. Ilse combineert professionaliteit met een persoonlijke aanpak, waardoor we ons direct op ons gemak voelden. Ze heeft een uniek talent om ruimtes tot leven te brengen met een perfect samenspel van kleuren, materialen en licht. Ons huis voelt eindelijk als een plek waar we helemaal onszelf kunnen zijn!",
+    text: "Van begin tot eind was het een fijne ervaring om met GrootsDesign samen te werken. Ilse combineert professionaliteit met een persoonlijke aanpak, waardoor we ons direct op ons gemak voelden. Ze heeft een uniek talent om ruimtes tot leven te brengen met een perfect samenspel van kleuren, materialen en licht. Ons huis voelt eindelijk als een plek waar we helemaal onszelf kunnen zijn!",
     author: "- P E T E R ",
   },
 ]

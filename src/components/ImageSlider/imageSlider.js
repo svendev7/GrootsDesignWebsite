@@ -101,76 +101,79 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 posMulti = 0.53;
             } else if (width >= 1450) {
                 maxPercentage = -195;
-                posMulti = 0.51;
+                posMulti = 0.50;
             } else if (width >= 1400) {
                 maxPercentage = -206;
-                posMulti = 0.485;
+                posMulti = 0.48;
             } else if (width >= 1350) {
                 maxPercentage = -216;
-                posMulti = 0.46;
+                posMulti = 0.44;
             } else if (width >= 1300) {
                 maxPercentage = -229;
-                posMulti = 0.44;
+                posMulti = 0.43;
             } else if (width >= 1250) {
                 maxPercentage = -242;
-                posMulti = 0.42;
+                posMulti = 0.41;
             } else if (width >= 1200) {
                 maxPercentage = -256;
-                posMulti = 0.4;
+                posMulti = 0.39;
             } else if (width >= 1150) {
                 maxPercentage = -271;
-                posMulti = 0.39;
+                posMulti = 0.37;
             } else if (width >= 1100) {
-                maxPercentage = -287;
-                posMulti = 0.38;
+                maxPercentage = -292;
+                posMulti = 0.35;
             } else if (width >= 1050) {
-                maxPercentage = -295;
-                posMulti = 0.36;
+                maxPercentage = -311;
+                posMulti = 0.33;
             } else if (width >= 1000) {
-                maxPercentage = -297;
-                posMulti = 0.35;
+                maxPercentage = -328;
+                posMulti = 0.32;
             } else if (width >= 950) {
-                maxPercentage = -294;
-                posMulti = 0.35;
+                maxPercentage = -350;
+                posMulti = 0.29;
             } else if (width >= 900) {
-                maxPercentage = -294;
-                posMulti = 0.35;
+                maxPercentage = -373;
+                posMulti = 0.28;
             } else if (width >= 850) {
-                maxPercentage = -294;
-                posMulti = 0.35;
+                maxPercentage = -398;
+                posMulti = 0.28;
             } else if (width >= 800) {
-                maxPercentage = -294;
-                posMulti = 0.34;
+                maxPercentage = -427;
+                posMulti = 0.25;
             } else if (width >= 750) {
                 maxPercentage = -294;
                 posMulti = 0.33;
             } else if (width >= 700) {
-                maxPercentage = -385;
+                maxPercentage = -320;
                 posMulti = 0.3;
             } else if (width >= 650) {
-                maxPercentage = -385;
-                posMulti = 0.3;
+                maxPercentage = -347;
+                posMulti = 0.28;
             } else if (width >= 600) {
                 maxPercentage = -385;
                 posMulti = 0.26;
             } else if (width >= 550) {
-                maxPercentage = -385;
+                maxPercentage = -425;
                 posMulti = 0.23;
             } else if (width >= 500) {
-                maxPercentage = -478;
+                maxPercentage = -475;
                 posMulti = 0.22;
             } else if (width >= 450) {
-                maxPercentage = -478;
-                posMulti = 0.2;
+                maxPercentage = -535;
+                posMulti = 0.205;
+            } else if (width == 430) {
+                maxPercentage = -565;
+                posMulti = 0.2;    
             } else if (width >= 400) {
-                maxPercentage = -478;
-                posMulti = 0.2;
+                maxPercentage = -610;
+                posMulti = 0.18;
             } else if (width >= 350) {
-                maxPercentage = -478;
-                posMulti = 0.2;
+                maxPercentage = -707;
+                posMulti = 0.15;
             } else if (width >= 300) {
-                maxPercentage = -1;
-                posMulti = 0.2;
+                maxPercentage = -835;
+                posMulti = 0.14;
             }
             // i swear to god I FUCKING HATE THIS WHOLE FUCKING COMPONENT it WILL not FUCKING resize this is my only solution and its FUCKING SHIT FUCK this
             if (height >= 1080) {
@@ -224,7 +227,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         
         track.animate(
             {
-                transform: `translate(${percentage}%, -50%)`
+                transform: `translate(${percentage}%, 0%)`
             },
             { 
                 duration: 600, 
@@ -390,15 +393,26 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
 
     return (
         <LayoutGroup>
+            <div className="slider-container">
+            <h1 style={{
+                textAlign: 'center',
+                fontFamily: 'Arial, sans-serif',
+                color: 'white',
+                margin: '0 0 50px 0',
+                width: '100%',
+                fontSize: '2.5rem',
+                fontWeight: 500,
+                letterSpacing: '1px'
+            }}>
+                Projecten
+            </h1>
             <div 
                 id="image-track" 
                 ref={trackRef} 
                 style={{ 
-                    transform: `translate(${sliderState.percentage}%, -50%)`,
+                    transform: `translate(${sliderState.percentage}%, 0%)`,
                     opacity: isFullScreen ? 0 : 1,
                     transition: 'opacity 0.4s ease-in-out',
-                    width: '100%',
-                    maxWidth: '100%'
                 }}
             >
                 {images.map((src, index) => (
@@ -427,9 +441,8 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 style={{
                     position: 'relative',
                     width: '100%',
-                    height: '15px', 
                     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                    marginTop: '20px',
+                    marginTop: '40px',
                     cursor: 'pointer',
                     borderRadius: '5px',
                 }}
@@ -448,7 +461,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                     }}
                 />
             </div>
-
+        </div>          
             <AnimatePresence>
                 {isFullScreen && imageTransitionState.rect && (
                     <motion.div

@@ -53,7 +53,7 @@
   }
   
   .rect {
-    height: 5px;
+    height: 7px;
     width: 50px;
     background-color: #bbb;
     margin: 0 5px;
@@ -66,4 +66,22 @@
   .rect.active {
     background-color: #784e3b;
   }
-  
+  @media (max-width: 768px) {
+    .rect {
+        height: 12px;  /* 71% larger */
+        width: 70px;   /* 40% wider */
+        margin: 0 8px; /* More spacing between */
+        border-radius: 3px; /* Slightly rounded */
+    }
+    
+    .rect.active {
+        height: 14px; /* Slightly taller active state */
+    }
+}
+
+.rect:hover{
+    background-color: #a16346;
+}
+.rect.active {
+    background-color: #784e3b;
+}

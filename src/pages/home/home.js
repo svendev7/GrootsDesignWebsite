@@ -8,16 +8,19 @@ import Header from '../../components/Header/Header';
 import { Link } from 'react-router-dom';
 function Home() {
   const [windowWidth, setWindowWidth] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
   const textSectionRef = React.useRef(null);
   const reviewsBlockRef = React.useRef(null);
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   const isTextSectionInView = useInView(textSectionRef, {
     once: true,
     rootMargin: '-100px 0px', 
@@ -49,7 +52,7 @@ function Home() {
         animate={isTextSectionInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1.25, ease: "easeOut" }}
       >
-        <h2>S A M E N&nbsp;&nbsp;&nbsp;G R O O T S&nbsp;&nbsp;&nbsp;D R O M E N, <br />S A M E N&nbsp;&nbsp;&nbsp;G R O O T S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>C R E Ë R E N.</span></h2>
+        <h2>SAMEN&nbsp;&nbsp;&nbsp;GROOTS&nbsp;&nbsp;&nbsp;DROMEN, <br />SAMEN&nbsp;&nbsp;&nbsp;GROOTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>CREËREN.</span></h2>
         <div className="text-blocks">
           <div className="text-block">
             <p><span className="span1">Bij GrootsDesign draait alles om het creëren van een interieur dat voelt als thuis - uniek, inspirerend en helemaal van jou.</span> je woning is meer dan een verzameling ruimtes; het is een plek waar je tot rust komt, oplaadt en geniet. Daarom geloven wij in ontwerpen die niet alleen mooi zijn, maar vooral perfect aansluiten bij jouw levenstijl en persoonlijkheid</p>
@@ -69,12 +72,8 @@ function Home() {
           </div>
         </motion.div>
         <div className="homepage-content">
-        {windowWidth <= 2400 && (
-        <div className="projecten-block">
-          <h2 className="projecten-title">P R O J E C T E N</h2>
-          <ImageSlider />
-          </div>
-            )}
+        {windowWidth <= 2400 && windowHeight >= 900 && windowHeight <= 1100 && <ImageSlider />}
+
             <motion.div
               ref={reviewsBlockRef}
               className="reviews-block"
