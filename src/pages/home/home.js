@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import '../home/home.css';
 import ImageSlider from '../../components/ImageSlider/imageSlider';
@@ -7,9 +7,17 @@ import InspirationSection from '../../components/InspirationSection/InspirationS
 import Header from '../../components/Header/Header';
 import { Link } from 'react-router-dom';
 function Home() {
+  const [windowWidth, setWindowWidth] = useState(0);
   const textSectionRef = React.useRef(null);
   const reviewsBlockRef = React.useRef(null);
-
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const isTextSectionInView = useInView(textSectionRef, {
     once: true,
     rootMargin: '-100px 0px', 
@@ -19,6 +27,8 @@ function Home() {
     once: true,
     rootMargin: '-100px 0px', 
   });
+
+  const myImages = ['/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg',];
   return (
     <div className="home">
       <Header />
@@ -59,10 +69,12 @@ function Home() {
           </div>
         </motion.div>
         <div className="homepage-content">
-          <div className="projecten-block">
-            <h2 className="projecten-title">P R O J E C T E N</h2>
-            <ImageSlider />
+        {windowWidth <= 2400 && (
+        <div className="projecten-block">
+          <h2 className="projecten-title">P R O J E C T E N</h2>
+          <ImageSlider />
           </div>
+            )}
             <motion.div
               ref={reviewsBlockRef}
               className="reviews-block"

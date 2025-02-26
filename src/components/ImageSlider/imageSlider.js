@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import './imageSliderStyles.css';
-
 const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const trackRef = useRef(null);
     const scrollbarRef = useRef(null);
@@ -13,8 +12,10 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const [opacityDelayed, setOpacityDelayed] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [isDraggingScrollbar, setIsDraggingScrollbar] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const scrollbarThumbRef = useRef(null);
-
+    const [maxPercentage, setMaxPercentage] = useState(-80);
+    const [posMulti, setPosMulti] = useState(1.1);
     const [imageTransitionState, setImageTransitionState] = useState({
         rect: startFullScreen ? {
             top: 0,
@@ -33,7 +34,16 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     });
 
     const imageRefs = useRef([]);
-    
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     useEffect(() => {
         if (!isFullScreen) {
             const timer = setTimeout(() => {
@@ -69,7 +79,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const updateTrackPosition = (percentage) => {
         const track = trackRef.current;
         if (!track) return;
-
+        
         track.animate(
             {
                 transform: `translate(${percentage}%, -50%)`
@@ -85,7 +95,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         Array.from(images).forEach((image) => {
             image.animate(
                 {
-                    objectPosition: `${100 + percentage * 1.035}% center`
+                    objectPosition: `${100 + percentage * posMulti}% center`
                 },
                 { 
                     duration: 600, 
@@ -95,6 +105,75 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             );
         });
     };
+    useEffect(() => {
+        const widthConfig = [
+            { minWidth: 2400, maxPercentage: -78, posMulti: 1.15 },
+            { minWidth: 2350, maxPercentage: -84, posMulti: 1.1 },
+            { minWidth: 2300, maxPercentage: -86, posMulti: 1.05 },
+            { minWidth: 2250, maxPercentage: -90, posMulti: 1.02 },
+            { minWidth: 2200, maxPercentage: -94, posMulti: 0.99 },
+            { minWidth: 2150, maxPercentage: -99, posMulti: 0.95 },
+            { minWidth: 2100, maxPercentage: -104, posMulti: 0.925 },
+            { minWidth: 2050, maxPercentage: -109, posMulti: 0.91 },
+            { minWidth: 2000, maxPercentage: -114, posMulti: 0.86 },
+            { minWidth: 1950, maxPercentage: -119, posMulti: 0.82 },
+            { minWidth: 1900, maxPercentage: -126, posMulti: 0.8 },
+            { minWidth: 1850, maxPercentage: -131, posMulti: 0.76 },
+            { minWidth: 1800, maxPercentage: -137, posMulti: 0.73 },
+            { minWidth: 1750, maxPercentage: -144, posMulti: 0.68 },
+            { minWidth: 1700, maxPercentage: -152, posMulti: 0.66 },
+            { minWidth: 1650, maxPercentage: -160, posMulti: 0.63 },
+            { minWidth: 1600, maxPercentage: -168, posMulti: 0.59 },
+            { minWidth: 1550, maxPercentage: -176, posMulti: 0.57 },
+            { minWidth: 1500, maxPercentage: -184, posMulti: 0.53 },
+            { minWidth: 1450, maxPercentage: -195, posMulti: 0.51 },
+            { minWidth: 1400, maxPercentage: -206, posMulti: 0.485 },
+            { minWidth: 1350, maxPercentage: -216, posMulti: 0.46 },
+            { minWidth: 1300, maxPercentage: -229, posMulti: 0.44 },
+            { minWidth: 1250, maxPercentage: -242, posMulti: 0.42 },
+            { minWidth: 1200, maxPercentage: -256, posMulti: 0.4 },
+            { minWidth: 1150, maxPercentage: -271, posMulti: 0.39 },
+            { minWidth: 1100, maxPercentage: -287, posMulti: 0.38 },
+            { minWidth: 1050, maxPercentage: -295, posMulti: 0.36 },
+            { minWidth: 1000, maxPercentage: -297, posMulti: 0.35 },
+            { minWidth: 950, maxPercentage: -294, posMulti: 0.35 },
+            { minWidth: 900, maxPercentage: -294, posMulti: 0.35 },
+            { minWidth: 850, maxPercentage: -294, posMulti: 0.35 },
+            { minWidth: 800, maxPercentage: -294, posMulti: 0.34 },
+            { minWidth: 750, maxPercentage: -294, posMulti: 0.33 },
+            { minWidth: 700, maxPercentage: -385, posMulti: 0.3 },
+            { minWidth: 650, maxPercentage: -385, posMulti: 0.3 },
+            { minWidth: 600, maxPercentage: -385, posMulti: 0.26 },
+            { minWidth: 550, maxPercentage: -385, posMulti: 0.23 },
+            { minWidth: 500, maxPercentage: -478, posMulti: 0.22 },
+            { minWidth: 450, maxPercentage: -478, posMulti: 0.2 },
+            { minWidth: 400, maxPercentage: -478, posMulti: 0.2 },
+            { minWidth: 350, maxPercentage: -478, posMulti: 0.2 },
+            { minWidth: 300, maxPercentage: -478, posMulti: 0.2 },
+        ];
+    
+        const updateVariablesBasedOnScreenWidth = () => {
+            const width = window.innerWidth;
+            const config = widthConfig.find((entry) => width >= entry.minWidth) || {
+                maxPercentage: -166,
+                posMulti: 3.25,
+            };
+            setMaxPercentage(config.maxPercentage);
+            setPosMulti(config.posMulti);
+        };
+    
+        // Call the function initially
+        updateVariablesBasedOnScreenWidth();
+    
+        // Add resize listener to update values dynamically
+        window.addEventListener('resize', updateVariablesBasedOnScreenWidth);
+    
+        // Cleanup
+        return () => {
+            window.removeEventListener('resize', updateVariablesBasedOnScreenWidth);
+        };
+    }, []);
+
 
     useEffect(() => {
         const track = trackRef.current;
@@ -133,8 +212,52 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
 
             const percentage = (mouseDelta / maxDelta) * -100;
             const nextPercentageUnconstrained = sliderState.prevPercentage + percentage;
-            const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -97);
 
+            // 2400
+            // 2350
+            // 2300
+            // 2250
+            // 2200
+            // 2150
+            // 2100
+            // 2050
+            // 2000
+            // 1950
+            // 1900
+            // 1850
+            // 1800
+            // 1750
+            // 1700
+            // 1650
+            // 1600
+            // 1550
+            // 1500
+            // 1450
+            // 1400
+            // 1350
+            // 1300
+            // 1250
+            // 1200
+            // 1150
+            // 1100
+            // 1050
+            // 1000
+            // 950
+            // 900
+            // 850
+            // 800
+            // 750
+            // 700
+            // 650
+            // 600
+            // 550
+            // 500
+            // 450
+            // 400
+            // 350
+            // 300
+            
+            const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), maxPercentage);
             setSliderState(prev => ({
                 ...prev,
                 percentage: nextPercentage
@@ -231,7 +354,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         }));
     };
 
-    const images = Array.from({ length: 10 }, (_, index) => `/images/${index + 1}.jpg`);
+    const images = Array.from({ length: 9 }, (_, index) => `/images/${index + 1}.jpg`);
 
     return (
         <LayoutGroup>
@@ -272,25 +395,24 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 style={{
                     position: 'relative',
                     width: '100%',
-                    height: '10px',
+                    top: '-35px',
+                    height: isMobile ? '15px' : '10px',
                     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                    marginTop: '80px',
+                    marginTop: isMobile ? '40px' : '80px',
                     cursor: 'pointer',
-                    borderRadius: '5px',
-                    userSelect: 'none'
+                    borderRadius: isMobile ? '5px' : '10px',
                 }}
             >
                 <div
                     ref={scrollbarThumbRef}
                     style={{
-                        userSelect: 'none',
                         position: 'absolute',
                         top: 0,
-                        left: `${Math.abs(sliderState.percentage)}%`,
-                        width: '10%',
+                        left: `${Math.abs(sliderState.percentage / (images.length - 2) * 37.15) * 0.2}%`,
+                        width: isMobile ? '20%' : '10%',
                         height: '100%',
                         backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                        borderRadius: '5px',
+                        borderRadius: isMobile ? '5px' : '10px',
                         cursor: 'pointer'
                     }}
                 />
