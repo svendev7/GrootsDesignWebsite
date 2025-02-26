@@ -55,3 +55,92 @@
     font-weight: bold;
   }
   
+  .portret-section {
+    background-color: #382e2d;
+    width: 100%;
+    height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .portret-content {
+    display: flex;
+    width: 100%;
+  }
+  
+  .portret-image {
+    padding: 50px;
+    margin-right: 50px; 
+  }
+  
+  .portret-image img {
+    max-width: 100%;
+    max-height: 700px;
+    object-fit: contain; 
+    width: auto;
+    height: auto;
+  }
+  
+  .portret-text {
+    flex: 1;
+    padding: 0 50px;
+    padding-top: 250px;  
+    padding-bottom: 250px; 
+    color: #fff; 
+  }
+  
+  .portret-text h2 {
+    margin-bottom: 50px; 
+    align-items: center;
+    text-transform: uppercase;
+  }
+  
+  .portret-text-content p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .zakelijk-section {
+    background-color: rgba(202, 197, 190, 0.54);
+    width: 100%;
+    height: 325px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .zakelijk-content {
+    width: 80%;
+    padding-top: 35px;  
+    padding-bottom: 25px; 
+    font-family: Arial, sans-serif;
+  }
+  
+  .zakelijk-content h2 {
+    color: #382e2d; 
+    margin-bottom: 20px; 
+    font-size: 34px;
+    text-align: center;
+  }
+  
+  .zakelijk-content p {
+    margin-bottom: 25px;
+    line-height: 1.5;
+    font-size: 20px;
+    text-align: justify;
+    text-align-last: left;
+  }
+  
+  .contact-button {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 18px;
+    border: 1px solid #382e2d;
+    padding: 20px 40px;
+    text-decoration: none;
+    color: #382e2d;
+  }

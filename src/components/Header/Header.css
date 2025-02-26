@@ -1,43 +1,83 @@
 .home-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 60px;
-    background-color: #382e2d;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #382e2d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  margin-left: 0;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 10px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+.header-nav {
+  display: flex;
+  gap: 15px;
+  margin-right: -125px;
+}
+
+.nav-button {
+  color: white;
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
   
-  .logo {
-    height: 50px;
-    width: 50px;
-    margin-left: 20px;
-  }
-  
-  .header-nav {
-    display: flex;
-    width: 800px;
-    position: absolute;
-    right: -200px;
-  }
-  
-  .nav-button {
-    text-decoration: none;
-    color: white;
-    font-family: 'Mukta Mahee', sans-serif;
-    font-weight: regular;
-    font-size: 20px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 17px;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-button:hover {
-    color: black;
-  }
+.nav-button:hover {
+  color: black;
+}
+
+  @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .header-nav {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        flex-direction: column;
+        background-color: #382e2d;
+        width: 100%;
+        padding: 20px 0;
+        transition: 0.3s;
+    }
+    
+    .header-nav.active {
+        left: 0;
+    }
+    
+    .nav-button {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+    }
+}

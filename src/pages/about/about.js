@@ -55,7 +55,47 @@ const About = () => {
           </div>
         </div>
         </motion.div>
-        
+
+      <div className="portret-section">
+        <div className="portret-content">
+          <div className="portret-image">
+            <img src="/images/Portret.png" alt="Decorative" />
+          </div>
+          <div className="portret-text">
+            <h2>samen groots creëren</h2>
+            <div className="portret-text-content">
+              <p>
+                Jouw huis moet voelen als een verlengstuk van wie jij bent. Daarom draait een ontwerp bij GrootsDesign niet om mijn stijl, maar om jouw wensen. Ik begeleid je stap voor stap in het proces, zodat we samen tot een interieur komen dat perfect bij je past.
+              </p>
+              <p>
+                Of je nu graag zelf aan de slag gaat met een volledig uitgewerkt plan of liever het hele traject uit handen geeft, ik zorg ervoor dat alles tot in de puntjes klopt.
+              </p>
+              <p>
+                Wil je tussendoor sparren of heb je hulp nodig bij de uitvoering? Ik sta naast je om je te begeleiden.
+              </p>
+              <p>
+                Geen standaardoplossingen, geen verrassingen achteraf – alleen een interieur dat voelt als thuiskomen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="zakelijk-section">
+        <div className="zakelijk-content">
+          <h2>ZAKELIJK</h2>
+          <p>
+            Heb jij een kantoorruimte, gastenverblijf of een andere zakelijke omgeving die een doordacht en stijlvol ontwerp verdient?
+            GrootsDesign helpt je bij het creëren van een interieur dat niet alleen mooi oogt, maar ook perfect functioneert. Of het nu gaat
+            om een inspirerende werkplek voor je team, een gastvrije omgeving voor bezoekers of een ruimte waar productiviteit en sfeer
+            hand in hand gaan – ik vertaal jouw wensen naar een doordacht ontwerp dat past bij de identiteit van jouw bedrijf.
+          </p>
+          <a className="contact-button" href="/contact">
+            NEEM CONTACT OP
+          </a>
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
