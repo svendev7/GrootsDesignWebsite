@@ -294,3 +294,130 @@ html, body {
   color: black
 }
 
+@media (max-width: 1200px) {
+  .image-container {
+    height: 70vh;
+  }
+
+  .text-section h2 {
+    font-size: 50px;
+  }
+
+  .watwedoen-title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    height: 50vh;
+  }
+
+  .overlay-image {
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: contain;
+  }
+
+  .text-section {
+    height: auto;
+    padding: 40px 20px;
+    margin-top: 20px;
+  }
+
+  .text-section h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    word-spacing: normal;
+  }
+
+  .text-blocks,
+  .text-blocks-second-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .text-block,
+  .text-block1,
+  .text-block2 {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0;
+  }
+
+  .text-block p,
+  .text-block1 p,
+  .text-block2 p {
+    font-size: 16px;
+  }
+
+ 
+  .reviews-block {
+    height: auto;
+    padding: 40px 0;
+  }
+
+  .watwedoen-block {
+    flex-direction: column;
+    margin: 30px 0;
+    padding: 0 20px;
+  }
+
+  .watwedoen-image {
+    width: 100%;
+    margin: 0;
+    height: 50vh;
+  }
+
+  .watwedoen-content {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .watwedoen-title {
+    font-size: 28px;
+    line-height: 1.3;
+    margin-top: 20px;
+  }
+
+  .watwedoen-text {
+    font-size: 16px;
+  }
+
+  .watwedoen-button {
+    width: 100%;
+    margin-top: 40px;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .projecten-title,
+  .reviews-title {
+    font-size: 28px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-container {
+    height: 40vh;
+  }
+
+  .overlay-image {
+    max-width: 70%;
+  }
+
+  .text-section h2 {
+    font-size: 28px;
+  }
+
+  .watwedoen-title {
+    font-size: 24px;
+  }
+
+  .projecten-title,
+  .reviews-title {
+    font-size: 24px;
+  }
+}

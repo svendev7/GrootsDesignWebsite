@@ -10,22 +10,27 @@
     transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
     
   }
+  
   .image-scrollbar {
     cursor: default; 
     }
   #image-track > .image {
     width: 40vmin; 
     height: 56vmin; 
+    max-width: 438px;
+    max-height: 605px;
     object-fit: cover;
     object-position: 100% center;
     cursor: pointer;
     transition: object-position 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
   
-  @media (max-width: 768px) and (max-width: 700px) {
+  @media (max-width: 768px) {
     #image-track > .image {
       width: 50vmin;
       height: 70vmin;
+      max-width: 438px;
+      max-height: 605px;
     }
     .image-scrollbar {
       margin-top: 20px !important;
@@ -36,6 +41,8 @@
     #image-track > .image {
       width: 65vmin;
       height: 85vmin;
+      max-width: 438px;
+      max-height: 605px;
     }
     .image-scrollbar {
       margin-top: 20px !important;
@@ -46,6 +53,8 @@
     #image-track > .image {
       width: 60vmin;
       height: 125vmin;
+      max-width: 438px;
+      max-height: 605px;
     }
     .image-scrollbar {
       margin-top: 20px !important;
