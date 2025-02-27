@@ -311,8 +311,9 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             setIsDragging(true);
             const mouseDelta = sliderState.mouseDownAt - clientX;
             const maxDelta = window.innerWidth / 1;
-
-            const percentage = (mouseDelta / maxDelta) * -100;
+            const isMobile = window.innerWidth <= 1000;
+            const speedFactor = isMobile ? 2.5 : 1; 
+            const percentage = (mouseDelta / maxDelta) * -100 * speedFactor;
             const nextPercentageUnconstrained = sliderState.prevPercentage + percentage;
 
         
@@ -456,15 +457,14 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             <div className="slider-container">
             <h1 style={{
                 textAlign: 'center',
-                fontFamily: 'Arial, sans-serif',
                 color: 'white',
                 margin: '0 0 50px 0',
                 width: '100%',
-                fontSize: '2.5rem',
+                fontSize: '72px',
                 fontWeight: 500,
                 letterSpacing: '1px'
             }}>
-                Projecten
+                PROJECTEN
             </h1>
             <div 
                 id="image-track" 

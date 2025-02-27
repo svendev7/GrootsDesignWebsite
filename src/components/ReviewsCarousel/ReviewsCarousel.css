@@ -1,87 +1,125 @@
+/* ReviewsCarousel.css */
 .reviews-carousel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 70%;
-    padding: 0px;
-    margin-bottom: 100px;
-    background-color: #e7e4e1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 20px;
+  background-color: #e7e4e1;
+}
+
+.review-container {
+  position: relative;
+  max-width: 1300px;
+  width: 100%;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.quote-image {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+}
+
+.review-text {
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: clamp(24px, 2.5vw, 40px);
+  color: #382e2d;
+  margin: 20px 0;
+  text-align: justify;
+  text-align-last: center;
+  line-height: 1.3;
+  padding: 0 10px;
+}
+
+.review-author {
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: clamp(20px, 2vw, 32px);
+  color: #382e2d;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.review-rects {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.rect {
+  height: 8px;
+  width: 60px;
+  background-color: #bbb;
+  margin: 5px 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+.rect.active {
+  background-color: #784e3b;
+  width: 80px;
+}
+
+@media (max-width: 768px) {
+  .reviews-carousel {
+      padding: 30px 15px;
   }
   
   .review-container {
-    position: relative;
-    max-width: 500px;
-    margin-bottom: 0px;
-    padding: 30px;
-    text-align: center;
-}
-
+      padding: 20px 10px;
+  }
+  
   .quote-image {
-    position: absolute;
-    top: 0;
-    left: -5px;
-    width: 50px;
-    height: 50px;
+      width: 30px;
+      height: 30px;
+      top: -20px;
   }
   
   .review-text {
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #382e2d;
-    margin-bottom: 20px;
-    text-align: justify;
-    text-align-last: center;
-    max-width: 100%; 
-    padding-left: 10px; 
-    padding-right: 10px; 
+      font-size: 20px;
+      margin: 15px 0;
   }
   
   .review-author {
-    font-family: 'Mukta Mahee', sans-serif;
-    font-size: 50px;
-    transform: scale(0.5);
-    color: #382e2d;
-    text-align: center;
-    word-spacing: -6px;
-  }
-  
-  .review-rects {
-    display: flex;
-    justify-content: center;
+      font-size: 18px;
+      margin: 10px 0;
   }
   
   .rect {
-    height: 7px;
-    width: 50px;
-    background-color: #bbb;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+      width: 40px;
+      height: 18px;
+      margin: 5px 6px;
   }
-  .rect:hover{
-    background-color: #a16346;
-  }
+  
   .rect.active {
-    background-color: #784e3b;
+      width: 50px;
   }
-  @media (max-width: 768px) {
-    .rect {
-        height: 12px;  /* 71% larger */
-        width: 70px;   /* 40% wider */
-        margin: 0 8px; /* More spacing between */
-        border-radius: 3px; /* Slightly rounded */
-    }
-    
-    .rect.active {
-        height: 14px; /* Slightly taller active state */
-    }
 }
 
-.rect:hover{
-    background-color: #a16346;
-}
-.rect.active {
-    background-color: #784e3b;
+@media (max-width: 480px) {
+  .review-text {
+      font-size: 18px;
+  }
+  
+  .review-author {
+      font-size: 16px;
+  }
+  
+  .rect {
+    height: 24px;
+      width: 30px;
+      margin: 5px 4px;
+  }
+  
+  .rect.active {
+      width: 40px;
+  }
 }

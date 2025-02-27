@@ -74,28 +74,33 @@ html, body {
   color: black;
 }
 
-.image-container {
+.video-wrapper {
   position: relative;
+  height: 100vh;
   width: 100vw;
-  height: 860px;
-  background-image: url('/public/images/main2.png');
-  background-size: cover;
-  background-position: center;
 }
-
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+}
 .image-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(202, 197, 190, 0.54);
+  width: 100vw;
+  height: 100vh;
+  /* background-color: rgba(202, 197, 190, 0.54); */
   z-index: 1;
 }
 
 .overlay-image {
   position: absolute;
-  top: 0;
+  top: 100px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -104,24 +109,25 @@ html, body {
 }
 
 .text-section {
-  width: 100vw;
-  height: 625px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  margin-top: 40px;
+  padding: 2vw 0;
+  margin: 2rem 0;
 }
 
 .text-section h2 {
-  font-family: 'Arial', sans-serif;
+  font-family: kozuka-mincho-pr6n, serif;
   font-weight: normal;
-  font-size: 65px;
-  margin-bottom: 20px;
+  font-size: clamp(2rem, 4vw, 52px);
+  line-height: 1.2;
+  padding: 0 5%;
+  margin-bottom: 2rem;
   letter-spacing: 0;
   word-spacing: -6px;
-  line-height: 1.5;
   word-wrap: break-word;
 }
 .text-section h2 span {
@@ -168,9 +174,11 @@ html, body {
 .text-block p, 
 .text-block1 p, 
 .text-block2 p {
-  font-size: 20px;
-  font-family: Arial, sans-serif;
-  font-weight: regular;
+  flex: 1 1 300px;
+  padding: 0rem;
+  font-size: clamp(1.3rem, 1.45vw, 16px);
+  line-height: 1.6;
+  font-family: 'Mukta Mahee', sans-serif;
 }
 
 .span1 {
@@ -191,119 +199,105 @@ html, body {
   flex-direction: column;
 }
 
-.projecten-block {
-  height: 850px;
-  width: 100%;
-  background-color: #382e2d;
-  overflow: hidden;
-  
-}
-
-.projecten-title {
-  font-family: 'Mukta Mahee', sans-serif;
-  font-size: 40px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  margin-top: 30px;
-  margin-bottom: 60px;
-  word-spacing: -6px;
-}
-
 .reviews-block {
-  height: 600px;
   width: 100%;
-  background-color: #e7e4e1;
-  overflow: hidden;
+    background-color: #e7e4e1;
+    padding: 60px 0;
 }
 
 .reviews-title {
-  font-family: 'Mukta Mahee', sans-serif;
-  font-size: 40px;
+  font-family: kozuka-mincho-pr6n, serif;
+  font-size: clamp(40px, 6vw, 70px);
   font-weight: bold;
   color: #382e2d;
-  margin-top: 50px;
-  word-spacing: -6px;
+  text-align: center;
+  margin: 0 0 30px 0;
 }
 
+/* Updated watwedoen-block section */
 .watwedoen-block {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 60px;
-  padding: 20px;
-  margin-right: 100px;
-  margin-bottom: 110px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px 0;
+  align-items: stretch;
 }
 
 .watwedoen-image {
-  width: 35%;
-  height: 81%;
-  position: relative;
-  margin-left: 100px;
-  max-width: 100%; 
-  max-height: 1000px; 
+  flex: 0 0 45%;
+  padding: 30px;
+  display: flex;
+  padding-right: 100px;
+  align-items: center;
 }
 
 .watwedoen-image img {
   width: 100%;
-  height: 100%; 
+  height: auto;
   object-fit: cover;
-  max-width: 100%;
-  max-height: 100%; 
+  margin: 0 auto;
 }
 
 .watwedoen-content {
-  width: 50%;
-  text-align: left;
-  position: relative;
-  padding-left: 0px;
-  padding-right: 50px;
+  flex: 0 0 55%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .watwedoen-title {
-  font-family: 'Roserita', sans-serif;
-  font-size: 50px;
+  font-family: kozuka-mincho-pr6n, serif;
+  font-size: clamp(24px, 4vw, 52px);
   font-weight: normal;
   text-align: center;
   color: #382e2d;
-  letter-spacing: -4px;
   line-height: 1.5;
+ 
   margin-top: -20px;
 }
 
 .watwedoen-text {
-  font-size: 18px;
-  font-family: Arial, sans-serif;
+  font-size: clamp(12px, 4vw, 21px);
+  font-family:'Mukta Mahee', sans-serif;
+  text-align: justify;
+  text-align-last: center;
   margin-top: 20px;
   line-height: 1.6;
 }
-
+@media (min-width: 1449px) {
+  .watwedoen-text {
+    
+    text-align-last: left;
+  }
+}
 .watwedoen-button {
   background-color: #382e2d;
   color: white;
-  font-size: 20px;
+  font-size: 27px;
   font-family: 'Mukta Mahee', sans-serif;
   padding: 15px 30px;
   border: none;
   width: fit-content;
   text-decoration: none;
-  margin-top: 200px;
+  margin-top: auto;
+  margin-bottom: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: block; 
   margin-left: auto;
-  margin-right: auto; 
-}
-/* .watwedoen-button {
-  width: 36%;
-  margin-top: 40px;
-  padding: 12px 20px;
-  font-size: 16px;
-} */
-.watwedoen-button:hover {
-  color: black
+  margin-right: auto;
+  width: fit-content
 }
 
+.watwedoen-button:hover {
+  color: black;
+}
+@media (min-width: 1920px) {
+  .watwedoen-image {
+    max-width: 778px;
+}
+}
 @media (max-width: 1200px) {
   .image-container {
     height: 70vh;
@@ -323,25 +317,29 @@ html, body {
     font-size: 16px;
   }
 }
+
 @media (max-width: 900px) {
   .image-container {
     height: 50vh;
   }
+  
+  /* Update for watwedoen-block to stack at this breakpoint */
   .watwedoen-block {
     flex-direction: column;
-    margin: 30px 0;
-    padding: 0 20px;
+    width: 100%;
+    padding: 20px;
   }
 
   .watwedoen-image {
+    flex: none;
     width: 100%;
-    margin: 0;
-    height: 75vh;
+    padding: 20px;
   }
 
   .watwedoen-content {
+    flex: none;
     width: 100%;
-    padding: 20px 0;
+    padding: 20px;
   }
 
   .watwedoen-title {
@@ -357,6 +355,83 @@ html, body {
   .watwedoen-button {
     width: fit-content;
     margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 933px) {
+.text-section {
+  height: auto;
+  padding: 40px 20px;
+  margin-top: 20px;
+}
+
+.text-section h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  word-spacing: normal;
+}
+
+.text-blocks,
+.text-blocks-second-row {
+  flex-direction: column;
+  width: 100%;
+}
+
+.text-block,
+.text-block1,
+.text-block2 {
+  width: 100%;
+  padding: 10px;
+  margin-top: 0;
+}
+
+.text-block p,
+.text-block1 p,
+.text-block2 p {
+  font-size: 16px;
+}
+}
+@media (max-width: 1450px) {
+  .image-container {
+    height: 50vh;
+  }
+  
+  /* Update for watwedoen-block to stack at 1450px or lower */
+  .watwedoen-block {
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .watwedoen-image {
+    flex: none;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .watwedoen-content {
+    flex: none;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .watwedoen-title {
+    font-size: 28px;
+    line-height: 1.3;
+    margin-top: 20px;
+  }
+
+  .watwedoen-text {
+    font-size: 16px;
+  }
+
+  .watwedoen-button {
+    width: fit-content;
+    margin-top: 40px;
+    margin-bottom: 20px;
     padding: 12px 20px;
     font-size: 16px;
   }
@@ -373,80 +448,16 @@ html, body {
     object-fit: contain;
   }
 
-  .text-section {
-    height: auto;
-    padding: 40px 20px;
-    margin-top: 20px;
-  }
-
-  .text-section h2 {
-    font-size: 32px;
-    line-height: 1.2;
-    word-spacing: normal;
-  }
-
-  .text-blocks,
-  .text-blocks-second-row {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .text-block,
-  .text-block1,
-  .text-block2 {
-    width: 100%;
-    padding: 10px;
-    margin-top: 0;
-  }
-
-  .text-block p,
-  .text-block1 p,
-  .text-block2 p {
-    font-size: 16px;
-  }
-
  
   .reviews-block {
-    height: auto;
     padding: 40px 0;
-  }
+}
 
-  .watwedoen-block {
-    flex-direction: column;
-    margin: 30px 0;
-    padding: 0 20px;
-  }
+.reviews-title {
+    margin-bottom: 20px;
+}
 
-  .watwedoen-image {
-    width: 100%;
-    margin: 0;
-    height: 50vh;
-  }
-
-  .watwedoen-content {
-    width: 100%;
-    padding: 20px 0;
-  }
-
-  .watwedoen-title {
-    font-size: 28px;
-    line-height: 1.3;
-    margin-top: 20px;
-  }
-
-  .watwedoen-text {
-    font-size: 16px;
-  }
-
-  .watwedoen-button {
-    width: 36%;
-    margin-top: 40px;
-    padding: 12px 20px;
-    font-size: 16px;
-  }
-
-  .projecten-title,
-  .reviews-title {
+  .projecten-title {
     font-size: 28px;
     margin-top: 30px;
   }
@@ -473,6 +484,7 @@ html, body {
   .reviews-title {
     font-size: 24px;
   }
+  
   .watwedoen-button {
     width: fit-content;
     margin-top: 40px;

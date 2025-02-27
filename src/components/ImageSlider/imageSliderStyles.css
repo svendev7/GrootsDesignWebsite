@@ -5,13 +5,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 80vh;
   box-sizing: border-box;
   overflow: hidden;
   touch-action: pan-x;
 }
 .slider-container h1 {
   margin-bottom: 50px;
+  font-family: kozuka-mincho-pr6n, serif;
 }
   
 #image-track {

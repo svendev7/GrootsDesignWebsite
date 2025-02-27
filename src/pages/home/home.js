@@ -35,8 +35,16 @@ function Home() {
   return (
     <div className="home">
       <Header />
-
-      <div className="image-container">
+      <div className="video-wrapper">
+        <video 
+          className="video-bg" 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+        >
+          <source src="/images/MainVidRev.mp4" type="video/mp4" />
+        </video>
         <div className="image-overlay"></div>
         <img
           src="/images/LOGO WIT .png" 
@@ -44,7 +52,6 @@ function Home() {
           className="overlay-image"
         />
       </div>
-
       <motion.div
         ref={textSectionRef}
         className="text-section"
@@ -52,7 +59,7 @@ function Home() {
         animate={isTextSectionInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1.25, ease: "easeOut" }}
       >
-        <h2>SAMEN&nbsp;&nbsp;&nbsp;GROOTS&nbsp;&nbsp;&nbsp;DROMEN, <br />SAMEN&nbsp;&nbsp;&nbsp;GROOTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>CREËREN.</span></h2>
+        <h2>SAMEN GROOTS DROMEN, <br />SAMEN GROOTS CREËREN.</h2>
         <div className="text-blocks">
           <div className="text-block">
             <p><span className="span1">Bij GrootsDesign draait alles om het creëren van een interieur dat voelt als thuis - uniek, inspirerend en helemaal van jou.</span> je woning is meer dan een verzameling ruimtes; het is een plek waar je tot rust komt, oplaadt en geniet. Daarom geloven wij in ontwerpen die niet alleen mooi zijn, maar vooral perfect aansluiten bij jouw levenstijl en persoonlijkheid</p>
@@ -67,12 +74,12 @@ function Home() {
             </div>
             <div className="text-block2">
               <p>Samen pakken we groots uit en zorgen we voor een interieur dat jouw verhaal vertelt. Van het eerste idee tot de laatste afwerking ben je verzekerd van een persoonlijke aanpak, zodat het eindresultaat niet alleen aansluit bij je verwachtingen, maar deze overtreft. 
-              <span className="span2">Dit is jouw ruimte, groots gemaakt.</span></p>
+              <span className="span1"> Dit is jouw ruimte, groots gemaakt.</span></p>
             </div>
           </div>
         </motion.div>
         <div className="homepage-content">
-        {windowWidth <= 2800 && <ImageSlider />}
+        <ImageSlider />
 
             <motion.div
               ref={reviewsBlockRef}
@@ -81,7 +88,7 @@ function Home() {
               animate={isReviewsBlockInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 1.25, ease: "easeOut" }}
             >
-            <h2 className="reviews-title">R E V I E W S</h2>
+            <h2 className="reviews-title">REVIEWS</h2>
             <ReviewsCarousel />
           </motion.div>
         <div className="watwedoen-block">
@@ -90,7 +97,7 @@ function Home() {
           </div>
           <div className="watwedoen-content">
             <h2 className="watwedoen-title">
-              "W A A R O M&nbsp;&nbsp; I K&nbsp;&nbsp; G E L O O F&nbsp;&nbsp; I N <br /> G R O O T S&nbsp;&nbsp; W O N E N"
+              "WAAROM IK GELOOF IN <br /> GROOTS WONEN"
             </h2>
             <p className="watwedoen-text">
               Ik ben Ilse Groot, het gezicht achter GrootsDesign. Al van jongs af aan ben ik gefascineerd door de impact

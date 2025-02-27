@@ -38,15 +38,15 @@
 .header-nav {
   display: flex;
   gap: 15px;
-  margin-right: -125px;
+  margin-right: 160px;
 }
 
 .nav-button {
   color: white;
   font-family: 'Mukta Mahee', sans-serif;
-  font-size: 16px;
+  font-size: 29px;
   letter-spacing: 1px;
-  padding: 10px;
+  padding: 20px;
   text-decoration: none;
   transition: color 0.3s ease;
 }
