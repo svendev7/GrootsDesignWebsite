@@ -336,43 +336,46 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         const thumb = scrollbarThumbRef.current;
         
         if (!scrollbar || !thumb) return;
-
+    
         const scrollbarRect = scrollbar.getBoundingClientRect();
         const thumbWidth = thumb.offsetWidth;
-        const clickPosition = (e.clientX - scrollbarRect.left - thumbWidth/2) / (scrollbarRect.width - thumbWidth);
         
-        // Inverted percentage calculation for touch
-        const percentage = Math.max(Math.min((1 - clickPosition) * maxPercentage, 0), maxPercentage);
-
+        // Calculate click position without inversion
+        const clickPosition = (e.clientX - scrollbarRect.left) / scrollbarRect.width;
+        
+        // Directly map click position to percentage range
+        const percentage = Math.max(Math.min(clickPosition * maxPercentage, 0), maxPercentage);
+    
         setSliderState(prev => ({
             ...prev,
             percentage: percentage,
             prevPercentage: percentage
         }));
-
+    
         updateTrackPosition(percentage);
     };
 
     const handleScrollbarMouseMove = (e) => {
         if (!isDraggingScrollbar || isFullScreen) return;
-
+    
         const scrollbar = scrollbarRef.current;
-    const thumb = scrollbarThumbRef.current;
-    if (!scrollbar || !thumb) return;
-
-    const scrollbarRect = scrollbar.getBoundingClientRect();
-    const thumbWidth = thumb.offsetWidth;
-    const position = (e.clientX - scrollbarRect.left - thumbWidth/2) / (scrollbarRect.width - thumbWidth);
-    const percentage = Math.max(Math.min(position * maxPercentage, 0), maxPercentage);
-
-    setSliderState(prev => ({
-        ...prev,
-        percentage: percentage,
-        prevPercentage: percentage
-    }));
-
-    updateTrackPosition(percentage);
-};
+        const thumb = scrollbarThumbRef.current;
+        if (!scrollbar || !thumb) return;
+    
+        const scrollbarRect = scrollbar.getBoundingClientRect();
+        
+        // Calculate position relative to scrollbar width
+        const position = (e.clientX - scrollbarRect.left) / scrollbarRect.width;
+        const percentage = Math.max(Math.min(position * maxPercentage, 0), maxPercentage);
+    
+        setSliderState(prev => ({
+            ...prev,
+            percentage: percentage,
+            prevPercentage: percentage
+        }));
+    
+        updateTrackPosition(percentage);
+    };
 
     const handleScrollbarMouseUp = () => {
         setIsDraggingScrollbar(false);
