@@ -18,6 +18,8 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const imageRefs = useRef([]);
     const [touchStartX, setTouchStartX] = useState(0);
     const [isTapping, setIsTapping] = useState(false);
+    const [isInteracting, setIsInteracting] = useState(false);
+    const interactionTimeout = useRef(null);
     const [imageTransitionState, setImageTransitionState] = useState({
         rect: startFullScreen ? {
             top: 0,
@@ -36,12 +38,23 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     });
     
     useEffect(() => {
-        // Add touch-action CSS property dynamically
         const sliderContainer = document.querySelector('.slider-container');
         if (sliderContainer) {
-            sliderContainer.style.touchAction = 'pan-x';
+            sliderContainer.style.touchAction = isInteracting ? 'pan-x' : 'auto';
         }
-    }, []);
+    }, [isInteracting]);
+    const startInteraction = () => {
+        setIsInteracting(true);
+        if (interactionTimeout.current) {
+            clearTimeout(interactionTimeout.current);
+        }
+    };
+    
+    const endInteraction = () => {
+        interactionTimeout.current = setTimeout(() => {
+            setIsInteracting(false);
+        }, 500);
+    };
     useEffect(() => {
         const updateVariablesBasedOnScreenWidth = () => {
             const width = window.innerWidth;
@@ -264,6 +277,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         if (!track) return;
 
         const handleOnDown = (e) => {
+            startInteraction();
             if (isFullScreen || isDraggingScrollbar) return;
         
             const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
@@ -275,6 +289,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         };
 
         const handleOnUp = () => {
+            endInteraction();
             if (isFullScreen || isDraggingScrollbar) return;
             
             setSliderState(prev => ({
@@ -285,6 +300,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         };
 
         const handleOnMove = (e) => {
+            startInteraction();
             if (isFullScreen || isDraggingScrollbar) return;
             
             const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
@@ -329,6 +345,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     }, [isFullScreen, sliderState, isDraggingScrollbar]);
 
     const handleScrollbarMouseDown = (e) => {
+        startInteraction();
         if (isFullScreen) return;
         
         setIsDraggingScrollbar(true);
@@ -378,9 +395,16 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     };
 
     const handleScrollbarMouseUp = () => {
+        endInteraction();
         setIsDraggingScrollbar(false);
     };
-
+    useEffect(() => {
+        return () => {
+            if (interactionTimeout.current) {
+                clearTimeout(interactionTimeout.current);
+            }
+        };
+    }, []);
     useEffect(() => {
         window.addEventListener('mousemove', handleScrollbarMouseMove);
         window.addEventListener('mouseup', handleScrollbarMouseUp);
