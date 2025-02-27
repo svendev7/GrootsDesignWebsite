@@ -8,6 +8,7 @@
   min-height: 80vh;
   box-sizing: border-box;
   overflow: hidden;
+  touch-action: pan-x;
 }
 .slider-container h1 {
   margin-bottom: 50px;
@@ -48,6 +49,7 @@
       height: 30px;
     } 
     #image-track > .image {
+      touch-action: pan-x;
       width: 300px; 
       height: 450px; 
       flex-shrink: 0; 

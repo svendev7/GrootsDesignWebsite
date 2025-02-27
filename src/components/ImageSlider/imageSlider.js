@@ -16,6 +16,8 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const [maxPercentage, setMaxPercentage] = useState(-10);
     const [posMulti, setPosMulti] = useState(0.1);
     const imageRefs = useRef([]);
+    const [touchStartX, setTouchStartX] = useState(0);
+    const [isTapping, setIsTapping] = useState(false);
     const [imageTransitionState, setImageTransitionState] = useState({
         rect: startFullScreen ? {
             top: 0,
@@ -33,7 +35,13 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         percentage: 0
     });
     
-
+    useEffect(() => {
+        // Add touch-action CSS property dynamically
+        const sliderContainer = document.querySelector('.slider-container');
+        if (sliderContainer) {
+            sliderContainer.style.touchAction = 'pan-x';
+        }
+    }, []);
     useEffect(() => {
         const updateVariablesBasedOnScreenWidth = () => {
             const width = window.innerWidth;
@@ -280,7 +288,9 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             if (isFullScreen || isDraggingScrollbar) return;
             
             const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
-            
+            if (e.touches) {
+                e.preventDefault();
+            }
             if (sliderState.mouseDownAt === 0) return;
             setIsDragging(true);
             const mouseDelta = sliderState.mouseDownAt - clientX;
@@ -330,16 +340,18 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         const scrollbarRect = scrollbar.getBoundingClientRect();
         const thumbWidth = thumb.offsetWidth;
         const clickPosition = (e.clientX - scrollbarRect.left - thumbWidth/2) / (scrollbarRect.width - thumbWidth);
-        const percentage = Math.max(Math.min(clickPosition * maxPercentage, 0), maxPercentage);
+        
+        // Inverted percentage calculation for touch
+        const percentage = Math.max(Math.min((1 - clickPosition) * maxPercentage, 0), maxPercentage);
 
-    setSliderState(prev => ({
-        ...prev,
-        percentage: percentage,
-        prevPercentage: percentage
-    }));
+        setSliderState(prev => ({
+            ...prev,
+            percentage: percentage,
+            prevPercentage: percentage
+        }));
 
-    updateTrackPosition(percentage);
-};
+        updateTrackPosition(percentage);
+    };
 
     const handleScrollbarMouseMove = (e) => {
         if (!isDraggingScrollbar || isFullScreen) return;
@@ -388,7 +400,28 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             rect: null
         }));
     };
+    const handleTouchStart = (e) => {
+        setTouchStartX(e.touches[0].clientX);
+        setIsDragging(false);
+    };
+    const handleTouchEnd = (e) => {
+        const deltaX = Math.abs(e.changedTouches[0].clientX - touchStartX);
+        if (deltaX < 5) { // Considered a tap
+            handleImageClick(e, null, null);
+        }
+    };
+    const handleScrollbarTouchStart = (e) => {
+        if (isFullScreen) return;
+        setIsDraggingScrollbar(true);
+        const touch = e.touches[0];
+        handleScrollbarMouseDown(touch);
+    };
 
+    const handleScrollbarTouchMove = (e) => {
+        if (!isDraggingScrollbar || isFullScreen) return;
+        const touch = e.touches[0];
+        handleScrollbarMouseMove(touch);
+    };
     const images = Array.from({ length: 9 }, (_, index) => `/images/${index + 1}.jpg`);
 
     return (
@@ -424,12 +457,16 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                         alt={`Image ${index + 1}`}
                         draggable="false"
                         onClick={(e) => handleImageClick(e, src, index)}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
                         whileHover={{ scale: 1.02 }}
                         style={{
                             cursor: 'pointer',
-                            willChange: 'transform'
+                            willChange: 'transform',
+                            touchAction: 'pan-x'
                         }}
                         ref={(el) => (imageRefs.current[index] = el)}
+
                     />
                 ))}
             </div>
@@ -438,6 +475,9 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 className="image-scrollbar" 
                 ref={scrollbarRef}
                 onMouseDown={handleScrollbarMouseDown}
+                    onTouchStart={handleScrollbarTouchStart}
+                    onTouchMove={handleScrollbarTouchMove}
+                    onTouchEnd={handleScrollbarMouseUp}
                 style={{
                     position: 'relative',
                     width: '100%',
@@ -445,6 +485,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                     marginTop: '40px',
                     cursor: 'pointer',
                     borderRadius: '5px',
+                    touchAction: 'none'
                 }}
             >
                 <div
