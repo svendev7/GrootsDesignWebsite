@@ -29,7 +29,7 @@
 .inspiration-subtitle {
   color: white;
   font-family: 'Mukta Mahee', sans-serif;
-  font-size: clamp(18px, 2vw, 32px); /* Fluid typography */
+  font-size: 28px; /* Fluid typography */
   margin: 2rem 0;
   line-height: 1.5;
 }
@@ -37,7 +37,7 @@
 .contact-boxes {
   display: flex;
   font-family: 'Mukta Mahee', sans-serif;
-  font-size: clamp(18px, 2vw, 32px);
+  font-size: 23px;
   flex-wrap: wrap;
   justify-content: center;
   gap: 3vw; /* Responsive gap */
@@ -47,8 +47,9 @@
 }
 
 .contact-box {
+  /* TODO: contactboxes minder breed */
   border: 2px solid white;
-  padding: 27px;
+  padding: 15px;
   color: white;
   text-decoration: none;
   flex: 1 1 300px; /* Flexible basis */
@@ -66,13 +67,12 @@
 }
 
 .instagram-title {
-  font-size: clamp(24px, 3vw, 52px);
-  letter-spacing: 4.3px;
+  font-size: 48px;
   font-family: kozuka-mincho-pr6n, serif;
   color: black;
   margin: 2rem auto;
   max-width: 90%;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .instagram-grid {
@@ -91,7 +91,7 @@
 
 .instagram-button {
   font-family: 'Mukta Mahee', sans-serif;
-  font-size: 27px;
+  font-size: 20px;
   background-color: #382e2d;
   color: white;
   padding: 15px 30px;
@@ -110,7 +110,7 @@
 }
 
 .instagram-icon {
-  font-size: 35px;
+  font-size: 30px;
 }
 
 /* Updated media queries */

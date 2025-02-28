@@ -8,7 +8,7 @@
   padding: 40px 20px;
   background-color: #e7e4e1;
 }
-
+/* TODO: text minder breed */
 .review-container {
   position: relative;
   max-width: 1300px;
@@ -29,7 +29,7 @@
 
 .review-text {
   font-family: 'Mukta Mahee', sans-serif;
-  font-size: clamp(24px, 2.5vw, 40px);
+  font-size: 32px;
   color: #382e2d;
   margin: 20px 0;
   text-align: justify;
@@ -40,7 +40,7 @@
 
 .review-author {
   font-family: 'Mukta Mahee', sans-serif;
-  font-size: clamp(20px, 2vw, 32px);
+  font-size: 24px;
   color: #382e2d;
   text-align: center;
   margin: 15px 0;

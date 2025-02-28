@@ -100,7 +100,6 @@ html, body {
 
 .overlay-image {
   position: absolute;
-  top: 100px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -121,8 +120,8 @@ html, body {
 
 .text-section h2 {
   font-family: kozuka-mincho-pr6n, serif;
-  font-weight: normal;
-  font-size: clamp(2rem, 4vw, 52px);
+  font-weight: 500;
+  font-size: 45px;
   line-height: 1.2;
   padding: 0 5%;
   margin-bottom: 2rem;
@@ -142,7 +141,7 @@ html, body {
   letter-spacing: 0.01px;
   display: flex;
   width: 74%;
-  justify-content: space-between;
+  justify-content: center;
   text-align: justify;
   text-align-last: left;
 }
@@ -150,25 +149,25 @@ html, body {
   letter-spacing: 0.01px;
   display: flex;
   width: 74%;
-  justify-content: space-between;
+  justify-content: center;
   text-align: justify;
   text-align-last: left;
 }
 .text-block {
-  width: 50%;
+  width: 45%;
   padding: 20px;
 }
 
 .text-block1 {
-  width: 50%;
+  width: 45%;
   padding: 20px;
   margin-top: -9.7px;
 }
 
 .text-block2 {
-  width: 50%;
+  width: 45%;
   padding: 20px;
-  margin-top: -58px;
+  margin-top: -33px;
 }
 
 .text-block p, 
@@ -176,8 +175,8 @@ html, body {
 .text-block2 p {
   flex: 1 1 300px;
   padding: 0rem;
-  font-size: clamp(1.3rem, 1.45vw, 16px);
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.2;
   font-family: 'Mukta Mahee', sans-serif;
 }
 
@@ -207,7 +206,7 @@ html, body {
 
 .reviews-title {
   font-family: kozuka-mincho-pr6n, serif;
-  font-size: clamp(40px, 6vw, 70px);
+  font-size: 45px;
   font-weight: bold;
   color: #382e2d;
   text-align: center;
@@ -227,7 +226,8 @@ html, body {
   flex: 0 0 45%;
   padding: 30px;
   display: flex;
-  padding-right: 100px;
+  margin-left: 170px;
+  padding-right: 300px;
   align-items: center;
 }
 
@@ -239,7 +239,8 @@ html, body {
 }
 
 .watwedoen-content {
-  flex: 0 0 55%;
+  margin-left: -220px;
+  flex: 0 0 45%;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -248,22 +249,22 @@ html, body {
 
 .watwedoen-title {
   font-family: kozuka-mincho-pr6n, serif;
-  font-size: clamp(24px, 4vw, 52px);
+  font-size: 45px;
   font-weight: normal;
   text-align: center;
   color: #382e2d;
-  line-height: 1.5;
+  line-height: 1.2;
  
   margin-top: -20px;
 }
 
 .watwedoen-text {
-  font-size: clamp(12px, 4vw, 21px);
-  font-family:'Mukta Mahee', sans-serif;
+  font-size: 17px;
+  font-family:'Arial', sans-serif;
   text-align: justify;
   text-align-last: center;
   margin-top: 20px;
-  line-height: 1.6;
+  line-height: 1.2;
 }
 @media (min-width: 1449px) {
   .watwedoen-text {
@@ -274,14 +275,14 @@ html, body {
 .watwedoen-button {
   background-color: #382e2d;
   color: white;
-  font-size: 27px;
+  font-size: 17px;
   font-family: 'Mukta Mahee', sans-serif;
-  padding: 15px 30px;
+  padding: 8px 25px;
   border: none;
   width: fit-content;
   text-decoration: none;
   margin-top: auto;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: block; 

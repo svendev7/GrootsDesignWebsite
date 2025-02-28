@@ -460,7 +460,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 color: 'white',
                 margin: '0 0 50px 0',
                 width: '100%',
-                fontSize: '72px',
+                fontSize: '45px',
                 fontWeight: 500,
                 letterSpacing: '1px'
             }}>
