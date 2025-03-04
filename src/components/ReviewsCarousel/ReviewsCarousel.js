@@ -44,7 +44,15 @@ const ReviewsCarousel = () => {
   const handleRectClick = (index) => {
     setActiveReview(index)
   }
+  const handlePrev = () => {
+    setActiveReview(prev => (prev === 0 ? reviews.length - 1 : prev - 1));
+    resetTimeout();
+  };
 
+  const handleNext = () => {
+    setActiveReview(prev => (prev + 1) % reviews.length);
+    resetTimeout();
+  };
   return (
     <div
       className="reviews-carousel"
@@ -55,8 +63,14 @@ const ReviewsCarousel = () => {
       }}
     >
       <div className="review-container">
-        <img src="/images/qoutes.png" width={50} height={50} className="quote-image" />
-        <p className="review-text" dangerouslySetInnerHTML={{ __html: reviews[activeReview].text }} />
+        
+      <div className="arrow-nav arrow-left" onClick={handlePrev}>❮</div>
+      <div className="arrow-nav arrow-right" onClick={handleNext}>❯</div>
+
+      <p className="review-text">
+          {/* <img src="/images/qoutes.png" width={50} height={50} className="quote-image" /> */}
+          {reviews[activeReview].text}
+        </p>
         <p className="review-author" dangerouslySetInnerHTML={{ __html: reviews[activeReview].author }} />
 
       </div>

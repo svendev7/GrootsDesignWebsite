@@ -31,7 +31,6 @@ function Home() {
     rootMargin: '-100px 0px', 
   });
 
-  const myImages = ['/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg', '/images/1.jpg',];
   return (
     <div className="home">
       <Header />
@@ -45,12 +44,13 @@ function Home() {
         >
           <source src="/images/MainVidRev.mp4" type="video/mp4" />
         </video>
-        <div className="image-overlay"></div>
+        <div className="image-overlay">
         <img
           src="/images/LOGO WIT .png" 
           alt="Overlay"
           className="overlay-image"
         />
+      </div>
       </div>
       <motion.div
         ref={textSectionRef}
@@ -65,7 +65,7 @@ function Home() {
             <p><span className="span1">Bij GrootsDesign draait alles om het creëren van een interieur dat voelt als thuis - uniek, inspirerend en helemaal van jou.</span> je woning is meer dan een verzameling ruimtes; het is een plek waar je tot rust komt, oplaadt en geniet. Daarom geloven wij in ontwerpen die niet alleen mooi zijn, maar vooral perfect aansluiten bij jouw levenstijl en persoonlijkheid</p>
             </div>
             <div className="text-block">
-              <p>Of het nu gaat om het kiezen van kleuren, materialen of het realiseren van maatwerkoplossingen, bij GrootsDesign gaat het altijd om een harmonieus totaalplaatje.</p>
+              <p>Of het nu gaat om het kiezen van kleuren, materialen of het realiseren van maatwerk oplossingen, bij GrootsDesign gaat het altijd om een harmonieus totaalplaatje.</p>
             </div>
           </div>
           <div className="text-blocks-second-row">
@@ -93,7 +93,7 @@ function Home() {
           </motion.div>
         <div className="watwedoen-block">
           <div className="watwedoen-image">
-            <img src="/images/ilse.png" alt="Wat We Doen" />
+            <img src="/images/PortretHome.png" alt="Wat We Doen" />
           </div>
           <div className="watwedoen-content">
             <h2 className="watwedoen-title">

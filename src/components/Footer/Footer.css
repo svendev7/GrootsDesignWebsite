@@ -17,8 +17,8 @@
 }
 
 .footer-logo {
-  height: 100px !important; 
-  width: auto !important; 
+  height: 100px;
+  width: 100vw; 
   max-width: 100%; 
   margin-bottom: 25px;
   object-fit: contain;
@@ -48,7 +48,7 @@
 .info-section {
   width: 100%;
   margin: 0;
-  padding: 10px 0;
+  padding: 0px 0;
 }
 
 .info-top {
@@ -107,7 +107,7 @@
   .info-top {
       flex-direction: row;
       justify-content: center;
-      gap: 68px;
+      gap: 111px;
   }
   .info-bottom {
     flex-direction: row;
@@ -121,6 +121,7 @@
   }
   
   .footer-logo {
+      width: 90vw;
       height: 150px;
   }
   
@@ -148,4 +149,18 @@
   .legal-text, .copyright {
       font-size: 14px;
   }
+}
+@media (max-width: 768px) {
+  .social-icons {
+    gap: 10px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+ .info-top {
+  gap: 1px
+ }
+ .footer-logo {
+  width: 85vw;
+
+}
 }

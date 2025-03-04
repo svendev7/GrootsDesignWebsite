@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { motion, useInView } from 'framer-motion';
 import '../about/about.css';
+import InspirationSection from '../../components/InspirationSection/InspirationSection';
 const About = () => {
    const aboutTextSectionRef = React.useRef(null);
 
@@ -59,7 +60,7 @@ const About = () => {
       <div className="portret-section">
         <div className="portret-content">
           <div className="portret-image">
-            <img src="/images/Portret.png" alt="Decorative" />
+            <img src="/images/PortretAbout.png" alt="Decorative" />
           </div>
           <div className="portret-text">
             <h2>samen groots creëren</h2>
@@ -95,8 +96,7 @@ const About = () => {
           </a>
         </div>
       </div>
-
-      <Footer />
+      <InspirationSection />
     </div>
   );
 };

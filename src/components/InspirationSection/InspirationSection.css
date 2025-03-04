@@ -47,12 +47,11 @@
 }
 
 .contact-box {
-  /* TODO: contactboxes minder breed */
   border: 2px solid white;
   padding: 15px;
   color: white;
   text-decoration: none;
-  flex: 1 1 300px; /* Flexible basis */
+  flex: 1 1 300px; 
   max-width: 650px;
   text-align: center;
   transition: all 0.3s ease;
@@ -142,7 +141,7 @@
   .instagram-grid img {
     height: 250px;
   }
- 
+  
 }
 
 @media (max-width: 650px) {
