@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiInstagram } from 'react-icons/fi';
+import { FiInstagram, FiExternalLink} from 'react-icons/fi';
 import '../InspirationSection/InspirationSection.css';
 import Footer from '../Footer/Footer';
 const InspirationSection = () => {
@@ -35,15 +35,22 @@ const InspirationSection = () => {
         </h2>
         
         <div className="instagram-grid">
-          <img src="/images/1.jpg" alt="Instagram post" />
-          <img src="/images/2.jpg" alt="Instagram post" />
-          <img src="/images/3.jpg" alt="Instagram post" />
+          {['/images/1.jpg', '/images/2.jpg', '/images/3.jpg'].map((imgSrc, index) => (
+              <a href="https://www.instagram.com/grootsdesign" className="instagram-image-container">
+              <div className="instagram-icon-overlay">
+                <FiExternalLink />
+              </div>
+              <img src={imgSrc} alt="Instagram post" />
+            </a>
+          ))}
         </div>
         
-        <button className="instagram-button">
-          <FiInstagram className="instagram-icon" />
-          VOLG ONS OP INSTAGRAM
-        </button>
+        <a href="https://www.instagram.com/grootsdesign">
+          <button className="instagram-button">
+            <FiInstagram className="instagram-icon" />
+            VOLG ONS OP INSTAGRAM
+          </button>
+        </a>
       </div>
       <Footer />
     </div>

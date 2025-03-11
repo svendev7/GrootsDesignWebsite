@@ -3,18 +3,18 @@
 }
 
 .inspiration-section {
-  background-color: #382e2d;
-  min-height: 50vh; /* Use viewport units for height */
-  padding: 4vw 3vw; /* Use viewport units for padding */
+  background-color: rgb(59,46,46);
+  min-height: 50vh; 
+  padding: 4vw 3vw; 
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center; /* Better centering */
+  justify-content: center; 
 }
 
 .inspiration-content {
-  width: 90%; /* More flexible width */
-  max-width: 1600px; /* Increased max-width */
+  width: 90%; 
+  max-width: 1600px; 
   margin: 0 auto;
   text-align: center;
 }
@@ -22,14 +22,14 @@
 .inspiration-title {
   color: white;
   font-family: kozuka-mincho-pr6n, serif;
-  font-size: clamp(32px, 4vw, 56px); /* Fluid typography */
+  font-size: clamp(32px, 4vw, 56px); 
   margin: 2rem 0;
 }
 
 .inspiration-subtitle {
   color: white;
   font-family: 'Mukta Mahee', sans-serif;
-  font-size: 28px; /* Fluid typography */
+  font-size: 28px;
   margin: 2rem 0;
   line-height: 1.5;
 }
@@ -40,12 +40,19 @@
   font-size: 23px;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3vw; /* Responsive gap */
+  gap: 3vw; 
   padding: 2rem 0;
   width: 100%;
   margin: 0 auto;
+  transition: all 0.3s ease;
+    transform: scale(1);
 }
-
+.contact-box:hover {
+    color: #2a2221;
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
 .contact-box {
   border: 2px solid white;
   padding: 15px;
@@ -60,38 +67,76 @@
   margin: 1vw;
 }
 
+.instagram-image-container {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.instagram-icon-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.instagram-icon-overlay svg {
+  color: #382e2d;
+  font-size: 24px;
+}
+
+.instagram-image-container:hover .instagram-icon-overlay {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.instagram-image-container:hover img {
+  transform: scale(1.03);
+}
 .instagram-section {
   padding: 5vw 0;
   text-align: center;
 }
 
 .instagram-title {
-  font-size: 48px;
+  font-size: clamp(28px, 3vw, 48px);
   font-family: kozuka-mincho-pr6n, serif;
   color: black;
   margin: 2rem auto;
-  max-width: 90%;
+  padding: 0 5%;
   line-height: 1.2;
+  max-width: 1600px;
 }
 
 .instagram-grid {
-  display: flex;
-  gap: 70px;
-  margin-left: 45px;
-  justify-content: center;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  max-width: 90%;
+  min-height: 500px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
 }
 
 .instagram-grid img {
-  height: 600px;
-  width: calc(33.33% + 10px);
+  width: 100%;
+  height: 100%;
+  max-height: 600px;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .instagram-button {
   font-family: 'Mukta Mahee', sans-serif;
   font-size: 20px;
-  background-color: #382e2d;
+  background-color: rgb(59,46,46);
   color: white;
   padding: 15px 30px;
   border-radius: 2px;
@@ -102,31 +147,34 @@
   margin: 0 auto;
   cursor: pointer;
   transition: all 0.3s ease;
+  transform: scale(1);
 }
 
 .instagram-button:hover {
   background-color: #2a2221;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .instagram-icon {
   font-size: 30px;
 }
-
-/* Updated media queries */
-
+@media (min-width: 2140px) {
+  .instagram-button {
+    font-size: 28px;
+  }
+}
+@media (min-width: 1921px) {
+  .instagram-grid {
+    max-width: 1600px;
+    gap: 50px;
+  }
+}
 @media (min-width: 1920px) {
   .contact-box {
     padding: 27px;
     font-size: 1.5rem;
     width: 450px;
-  }
-  .instagram-grid img {
-    height: 900px;
-
-  }
-  .instagram-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 2500px;
   }
 }
 @media (max-width: 1450px) {
@@ -134,27 +182,49 @@
     gap: 30px;
   }
 }
+
+@media (max-width: 1024px) {
+  .instagram-grid {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .instagram-grid img {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 940px) {
+  .instagram-grid {
+    min-width: 300px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 95%;
+  }
+  
+  .instagram-grid img {
+    max-height: 300px;
+  }
+}
 @media (max-width: 768px) {
   .contact-box {
     flex-basis: 80%;
-  }
-  .instagram-grid img {
-    height: 250px;
-  }
-  
+  } 
 }
-
 @media (max-width: 650px) {
   .inspiration-section {
     min-height: auto;
     padding: 2rem 1rem;
   }
-  
-  .instagram-title {
-    font-size: 20px;
+}
+@media (max-width: 480px) {
+  .instagram-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    padding: 0 10px;
   }
-
+  
   .instagram-grid img {
-    height: 250px;
+    max-height: 400px;
   }
 }
+

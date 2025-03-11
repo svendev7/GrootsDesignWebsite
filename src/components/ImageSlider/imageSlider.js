@@ -358,10 +358,8 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         const scrollbarRect = scrollbar.getBoundingClientRect();
         const thumbWidth = thumb.offsetWidth;
         
-        // Calculate click position without inversion
         const clickPosition = (e.clientX - scrollbarRect.left) / scrollbarRect.width;
         
-        // Directly map click position to percentage range
         const percentage = Math.max(Math.min(clickPosition * maxPercentage, 0), maxPercentage);
     
         setSliderState(prev => ({
@@ -381,8 +379,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         if (!scrollbar || !thumb) return;
     
         const scrollbarRect = scrollbar.getBoundingClientRect();
-        
-        // Calculate position relative to scrollbar width
+    
         const position = (e.clientX - scrollbarRect.left) / scrollbarRect.width;
         const percentage = Math.max(Math.min(position * maxPercentage, 0), maxPercentage);
     

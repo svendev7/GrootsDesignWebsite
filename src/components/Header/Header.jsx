@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
@@ -8,7 +8,7 @@ const Header = () => {
     <header className="home-header">
       <Link to="/">
         <img
-          src="/images/LOGO GD.png" 
+          src="/images/LOGO WIT NT.png" 
           alt="Logo"
           className="logo"
         />
