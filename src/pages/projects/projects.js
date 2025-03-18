@@ -35,9 +35,6 @@ const Projects = () => {
               <img src="/images/3.jpg" alt="Project 4" />
             </div>
             <div className="stacked-image">
-              <img src="/images/2.jpg" alt="Project 5" />
-            </div>
-            <div className="stacked-image">
               <img src="/images/6.jpg" alt="Project 6" />
             </div>
             <div className="stacked-image">
@@ -54,6 +51,31 @@ const Projects = () => {
             </div>
             <div className="stacked-image">
               <img src="/images/9.jpg" alt="Project 11" />
+            </div>
+            <div className="stacked-image">
+              <img src="/images/11.jpg" alt="Project 11" />
+            </div>
+            <div className="stacked-image">
+              <img src="/images/12.jpg" alt="Project 12" />
+            </div>
+            <div className="stacked-image">
+              <img src="/images/13.jpg" alt="Project 13" />
+            </div>
+            <div className="stacked-image">
+              <img src="/images/3.png" alt="Project 11" />
+            </div>
+
+            <div className="double-image">
+              <img src="/images/7.png" alt="Project 11" />
+              <img src="/images/6.png" alt="Project 11" />
+            </div>
+            <div className="double-image">
+              <img src="/images/4.png" alt="Project 11" />
+              <img src="/images/2.png" alt="Project 11" />
+            </div>
+            <div className="double-image">
+              <img src="/images/8.png" alt="Project 11" />
+              <img src="/images/9.png" alt="Project 11" />
             </div>
           </>
         ) : (
@@ -95,6 +117,19 @@ const Projects = () => {
         <div className="full-width-image">
           <img src="/images/9.jpg" alt="Project 11" />
           </div>
+          <div className="three-column">
+          <img src="/images/1.png" alt="Project 8" />
+          <img src="/images/2.png" alt="Project 9" />
+          <img src="/images/4.png" alt="Project 10" />
+        </div>
+        <div className="full-width-image">
+          <img src="/images/3.png" alt="Project 11" />
+          </div>
+          <div className="three-column">
+          <img src="/images/8.png" alt="Project 8" />
+          <img src="/images/6.png" alt="Project 9" />
+          <img src="/images/7.png" alt="Project 10" />
+        </div>
           </>
         )}
       </div>
