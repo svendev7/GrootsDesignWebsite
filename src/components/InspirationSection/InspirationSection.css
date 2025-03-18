@@ -20,9 +20,9 @@
   font-family: kozuka-mincho-pr6n, serif;
   font-size: clamp(32px, 4vw, 56px); 
   margin: 2rem 0;
-  display: flex;
-  justify-content: center; 
-  text-align-last: center;
+  text-align: center; 
+  display: block; 
+  width: 100%;
 }
 
 
