@@ -18,8 +18,7 @@
 .footer-logo {
   height: 100px;
   width: 100vw; 
-  max-width: 100%; 
-  margin-bottom: 25px;
+  max-width: 40%; 
   object-fit: contain;
   display: block; 
   margin-left: auto;
