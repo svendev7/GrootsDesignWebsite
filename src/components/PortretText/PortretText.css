@@ -26,7 +26,7 @@
   .portret-text-content {
     flex: 0 0 calc(50vw - 15px);
     height: 100%;
-    padding: 75px 250px 75px 0px;
+    padding: 75px 250px 75px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,7 +39,7 @@
     text-align: center;
     color: rgb(59,46,46);
     line-height: 1.2;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
   }
   
   .portret-text-paragraph {
@@ -68,14 +68,14 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: auto;
+    margin-top: 25px;
     align-self: center;
   }
   
   .portret-text-button:hover {
     color: rgb(177, 177, 177);
   }
-@media (max-width: 1920px) {
+/* @media (max-width: 1920px) {
     .portret-text-image {
       padding: 75px 0px 75px 25px;
     }
@@ -83,9 +83,13 @@
     .portret-text-content {
       padding: 75px 50px 75px 0px;
     }
-  }
-
-@media (max-width: 1600px) {
+  } */
+@media (min-width: 1921px) {
+  .portret-text-content {
+    flex: 0 0 calc(50vw - 15px);
+}
+}
+/* @media (max-width: 1600px) {
     .portret-text-image {
       padding: 75px 0px 75px -25px;
     }
@@ -94,7 +98,12 @@
       padding: 75px 0px 75px 0px;
       
     }
+  } */
+@media (min-width: 1551px) {
+  .portret-text-block {
+    max-height: 1080px;
   }
+}
 @media (max-width: 1550px) {
     .portret-text-block {
       flex-direction: column;

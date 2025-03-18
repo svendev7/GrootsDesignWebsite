@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Minion+Pro:wght@700&display=swap');
+
 .image-container {
     position: relative;
     width: 100vw;
@@ -17,8 +19,7 @@
   letter-spacing: 4px;
   font-size: 90px;
   color: rgb(59, 46, 46);
-  font-family: 'Mukta Mahee', sans-serif;
-  font-weight: bold;
+  font-family: 'Minion Pro', serif;
   pointer-events: none; 
 }
 .about-text-blocks {

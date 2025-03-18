@@ -214,7 +214,7 @@ html, body {
 .text-block2 {
   width: 45%;
   padding: 20px;
-  margin-top: -10px;
+  margin-top: -31px;
 }
 
 .text-block p, 
@@ -269,6 +269,12 @@ html, body {
     font-size: 24px;
     line-height: 1.2;
     font-family: 'Mukta Mahee', sans-serif;
+  }
+  .text-block1 {
+    margin-top: -30px;
+  }
+  .text-block2 {
+    margin-top: -60px;
   }
   .text-section h2 {
     font-size: 65px;
