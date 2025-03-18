@@ -13,14 +13,20 @@ const Footer = () => {
         />
         
         <div className="social-icons">
-          <div className="icon-wrapper">
-            <FiFacebook className="social-icon" />
+        <div className="icon-wrapper">
+            <a href='https://www.facebook.com/profile.php?id=61569942032214'>
+              <FiFacebook className="social-icon" />
+            </a>
           </div>
           <div className="icon-wrapper">
+            <a href='https://www.linkedin.com/in/ilse-groot-4b812815b/'>
             <FiLinkedin className="social-icon" />
+            </a>
           </div>
           <div className="icon-wrapper">
+          <a href='https://www.instagram.com/grootsdesign/'>
             <FiInstagram className="social-icon" />
+            </a>
           </div>
         </div>
 
