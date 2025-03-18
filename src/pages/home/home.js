@@ -9,6 +9,7 @@ import Header from '../../components/Header/Header';
 import { Link } from 'react-router-dom';
 import { FiChevronDown } from 'react-icons/fi';
 function Home() {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
   const textSectionRef = React.useRef(null);
@@ -22,6 +23,9 @@ function Home() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+
+
   const isTextSectionInView = useInView(textSectionRef, {
     once: true,
     rootMargin: '-100px 0px', 
@@ -36,25 +40,42 @@ function Home() {
     <div className="home">
       <Header />
       <div className="video-wrapper">
+        {!isVideoLoaded && (
+          <div className="video-placeholder">
+            <img
+              src="/images/BannerImageHome.png" 
+              alt="Loading image"
+              className="placeholder-image"
+            />
+            <div className="loader"></div>
+          </div>
+        )}
         <video 
           className="video-bg" 
           autoPlay 
           muted 
           loop 
           playsInline
+          onLoadedData={() => setIsVideoLoaded(true)}
         >
           <source src="/images/MainVidRev.mp4" type="video/mp4" />
         </video>
         <div className="image-overlay">
-        <img
-          src="/images/LOGO WIT .png" 
-          alt="Overlay"
-          className="overlay-image"
-        />
-        <a className="scroll-indicator">
-          <FiChevronDown className="chevron-icon" />
-        </a>
-      </div>
+          {isVideoLoaded ? (
+            <img
+              src="/images/LOGO WIT .png" 
+              alt="Overlay"
+              className="overlay-image"
+            />
+          ) : (
+            <div className="loader"></div>
+          )}
+          {isVideoLoaded && (
+            <a className="scroll-indicator">
+              <FiChevronDown className="chevron-icon" />
+            </a>
+          )}
+        </div>
       </div>
       <motion.div
         ref={textSectionRef}
@@ -98,6 +119,7 @@ function Home() {
           <PortretText
             title="WAAROM IK GELOOF IN <br /> GROOTS WONEN"
             imageSrc="/images/PortretHome.png"
+            buttonText="WAT WE DOEN"
             paragraphs={[
               `Ik ben Ilse Groot, het gezicht achter GrootsDesign. Al van jongs af aan ben ik gefascineerd door de impact die een goed doordacht interieur kan hebben op hoe je je voelt en functioneert. Voor mij is een interieur veel meer dan alleen een verzameling meubels en kleuren; het is een vertaling van wie je bent en hoe je wilt leven. <span class="highlight-text">Dat is de filosofie die ik met GrootsDesign nastreef – het creëren van ruimtes die jouw verhaal vertellen en waarin jij je helemaal thuis voelt.</span>`,
               `Met een achtergrond in interieurontwerp en jarenlange ervaring in de zakelijke en particuliere markt, weet ik precies hoe ik jouw wensen kan omzetten in een interieur dat niet alleen esthetisch prachtig is, maar ook praktisch en toekomstbestendig. Mijn kracht ligt in het combineren van jouw unieke stijl met slimme, verrassende oplossingen die het maximale uit jouw ruimte halen.`,

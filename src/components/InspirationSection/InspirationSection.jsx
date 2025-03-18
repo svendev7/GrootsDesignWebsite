@@ -10,8 +10,7 @@ const InspirationSection = () => {
           <h2 className="inspiration-title">VOEL JE DE INSPIRATIE AL BORRELEN?</h2>
           <p className="inspiration-subtitle">
             Het is groots tijd om jouw droominterieur waar te maken.
-            <br />
-            Laten we kennismaken!
+            <br /> Laten we kennismaken!
           </p>
           
           <div className="contact-boxes">
@@ -45,12 +44,13 @@ const InspirationSection = () => {
           ))}
         </div>
         
-        <a href="https://www.instagram.com/grootsdesign">
-          <button className="instagram-button">
-            <FiInstagram className="instagram-icon" />
-            VOLG ONS OP INSTAGRAM
-          </button>
-        </a>
+        <button 
+          className="instagram-button" 
+          onClick={() => window.open('https://www.instagram.com/grootsdesign', '_blank')}
+        >
+          <FiInstagram className="instagram-icon" />
+          VOLG ONS OP INSTAGRAM
+        </button>
       </div>
       <Footer />
     </div>

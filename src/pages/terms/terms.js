@@ -236,7 +236,7 @@ const Terms = () => {
         voor de uitvoering van de overeenkomst. <br />
         </p>
         <div className="section-spacer" />
-        <h2 className="brown-title"> 12. Toepasselijk Rech</h2>
+        <h2 className="brown-title"> 12. Toepasselijk Recht</h2>
         <p>
         12.1 Op alle overeenkomsten met GrootsDesign is Nederlands recht van toepassing. <br />
         </p>

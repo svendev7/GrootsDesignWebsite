@@ -59,18 +59,15 @@
 .nav-button:hover {
   color: black;
 }
-@media (min-width: 2140px) {
+@media (min-width: 2100px) {
   .logo {
-    height: 42px;
+    height: 52.5px;
   }
   .home-header {
-    height: 80px;
+    height: 100px;
   }
   .nav-button {
-    font-size: 30px;
-  }
-  .header-nav {
-    margin-right: 190px;
+    font-size: 40px;
   }
 }
 @media (max-width: 1000px) {

@@ -1,12 +1,19 @@
 .image-container {
     position: relative;
     width: 100vw;
-    height: 860px;
+    height: auto; 
+    max-height: 100vh;
+    overflow: hidden;
+}
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .banner-title {
   position: absolute;
-  left: 100px;
-  bottom: 100px;
+  left: 7%;
+  bottom: 10%;
   letter-spacing: 4px;
   font-size: 90px;
   color: rgb(59, 46, 46);
@@ -227,6 +234,32 @@
     .about-text-block2 p {
       font-size: 24px;
     }
+
+    .zakelijk-content {
+      padding-top: 60px;  
+      padding-bottom: 60px; 
+    }
+    
+    .zakelijk-content h2 {
+      font-size: 50px;
+    }
+    
+    .zakelijk-content p {
+      font-size: 26px;
+    }
+    .contact-button {
+      font-size: 24px;
+      padding: 30px 60px;
+    }
+    .corner-title {
+      font-size: 45px;
+    }
+    .corners-section {
+      margin-bottom: 125px;
+    }
+    .corner-text {
+      font-size: 30px;
+    }
   }
   @media (max-width: 933px) {
     .about-text-section {
@@ -311,15 +344,27 @@
     .corner-title {
       font-size: 24px;
     }
-  
+    .banner-title {
+      font-size: 35px; 
+      left: 5%;
+      bottom: 8%;
+      letter-spacing: 2px;
+    }
     .corner-text {
       font-size: 18px;
       max-width: 100%;
     }
-  
     .corner-image-container {
       width: 140px;
       height: 140px;
     }
   }
+  @media (max-width: 480px) {
+    .banner-title {
+        font-size: 7vw; 
+        left: 5%;
+        bottom: 5%;
+        letter-spacing: 1px;
+    }
+}
   

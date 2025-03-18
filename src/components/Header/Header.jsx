@@ -23,8 +23,8 @@ const Header = () => {
         <span></span>
       </button>
       <nav className={`header-nav ${isActive ? 'active' : ''}`}>
-        <Link to="/" className="nav-button"onClick={() => setIsActive(false)}>HOME</Link>
-        <Link to="/projects" className="nav-button"onClick={() => setIsActive(false)}>PROJECTEN</Link>
+        <Link resetScroll={false} to="/" className="nav-button"onClick={() => setIsActive(false)}>HOME</Link>
+        <Link resetScroll={true} to="/projects" className="nav-button"onClick={() => setIsActive(false)}>PROJECTEN</Link>
         <Link to="/about" className="nav-button" onClick={() => setIsActive(false)}>WAT WE DOEN</Link>
         <Link to="/contact" className="nav-button"onClick={() => setIsActive(false)}>CONTACT</Link>
       </nav>

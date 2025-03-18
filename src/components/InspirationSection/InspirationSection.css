@@ -7,16 +7,12 @@
   min-height: 50vh; 
   padding: 4vw 3vw; 
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center; 
 }
 
 .inspiration-content {
   width: 90%; 
   max-width: 1600px; 
   margin: 0 auto;
-  text-align: center;
 }
 
 .inspiration-title {
@@ -24,7 +20,11 @@
   font-family: kozuka-mincho-pr6n, serif;
   font-size: clamp(32px, 4vw, 56px); 
   margin: 2rem 0;
+  display: flex;
+  justify-content: center; 
+  text-align-last: center;
 }
+
 
 .inspiration-subtitle {
   color: white;
@@ -32,6 +32,9 @@
   font-size: 28px;
   margin: 2rem 0;
   line-height: 1.5;
+  display: flex;
+  justify-content: center; 
+  text-align-last: center;
 }
 
 .contact-boxes {
@@ -47,12 +50,7 @@
   transition: all 0.3s ease;
     transform: scale(1);
 }
-.contact-box:hover {
-    color: #2a2221;
-    background-color: white;
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
+
 .contact-box {
   border: 2px solid white;
   padding: 15px;
@@ -92,14 +90,7 @@
   font-size: 24px;
 }
 
-.instagram-image-container:hover .instagram-icon-overlay {
-  transform: scale(1.1);
-  background-color: rgba(255, 255, 255, 1);
-}
 
-.instagram-image-container:hover img {
-  transform: scale(1.03);
-}
 .instagram-section {
   padding: 5vw 0;
   text-align: center;
@@ -150,14 +141,31 @@
   transform: scale(1);
 }
 
-.instagram-button:hover {
-  background-color: #2a2221;
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+
 
 .instagram-icon {
   font-size: 30px;
+}
+@media (min-width: 789px) {
+  .instagram-button:hover {
+    background-color: #2a2221;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  .instagram-image-container:hover .instagram-icon-overlay {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 1);
+  }
+  
+  .instagram-image-container:hover img {
+    transform: scale(1.03);
+  }
+  .contact-box:hover {
+    color: #2a2221;
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
 }
 @media (min-width: 2140px) {
   .instagram-button {
@@ -209,6 +217,9 @@
   .contact-box {
     flex-basis: 80%;
   } 
+  .inspiration-subtitle {
+    font-size: 22px;
+  }
 }
 @media (max-width: 650px) {
   .inspiration-section {

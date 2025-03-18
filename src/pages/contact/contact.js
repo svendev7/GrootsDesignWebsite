@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import '../contact/contact.css';
@@ -11,20 +11,65 @@ const Contact = () => {
     message: ''
   });
   const [errors, setErrors] = useState({});
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const validatePhone = (phone) => {
+    const dutchPhoneRegex = /^(06)[-\s]?\d{8}$/;
+    return dutchPhoneRegex.test(phone);
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: false }));
+    }
+  };
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
+    
     if (!formData.name) newErrors.name = true;
-    if (!formData.email) newErrors.email = true;
-    if (!formData.phone) newErrors.phone = true;
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = true;
+    if (!formData.phone || !validatePhone(formData.phone)) newErrors.phone = true;
     if (!formData.message) newErrors.message = true;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    // Submit logic here
+
+    try {
+      const response = await fetch('https://formspree.io/f/xdkekyvq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `New contact from ${formData.name}`
+        }),
+      });
+
+      if (response.ok) {
+        setShowSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+        setErrors({});
+        
+        setTimeout(() => setShowSuccess(false), 3000);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -33,7 +78,13 @@ const Contact = () => {
       <div className="contact-banner">
         <img src="/images/AboutFiller.png" alt="Contact banner" />
       </div>
-      
+
+      {showSuccess && (
+        <div className="success-popup">
+          <p>Bedankt! Je bericht is succesvol verzonden.</p>
+        </div>
+      )}
+
       <div className="contact-content">
         <div className="contact-info-container">
           <div className="contact-info">
@@ -65,39 +116,45 @@ const Contact = () => {
 
         <div className="contact-form-container">
           <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-group">
+             <div className="form-group">
               <label>NAAM *</label>
               <input
                 type="text"
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={(e) => handleInputChange('name', e.target.value)}
                 className={errors.name ? 'error' : ''}
+                placeholder="Jouw naam"
               />
               {errors.name && <span className="error-message">Dit veld is verplicht</span>}
             </div>
-            <div className="spacer-50" />
 
             <div className="form-group">
               <label>E-MAIL ADRES *</label>
               <input
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) => handleInputChange('email', e.target.value)}
                 className={errors.email ? 'error' : ''}
+                placeholder="voorbeeld@email.com"
               />
-              {errors.email && <span className="error-message">Dit veld is verplicht</span>}
+              {errors.email && <span className="error-message">Voer een geldig e-mailadres in</span>}
             </div>
-            <div className="spacer-50" />
 
             <div className="form-group">
               <label>TELEFOONNUMMER *</label>
               <input
                 type="tel"
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                onChange={(e) => handleInputChange('phone', e.target.value)}
                 className={errors.phone ? 'error' : ''}
+                placeholder="06-12345678"
+                pattern="(06)[-\s]?\d{8}"
               />
-              {errors.phone && <span className="error-message">Dit veld is verplicht</span>}
+              {errors.phone && (
+                <span className="error-message">
+                  Voer een geldig Nederlands telefoonnummer in (06-12345678)
+                </span>
+              )}
             </div>
             <div className="spacer-50" />
 

@@ -5,6 +5,7 @@ import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import './imageSliderStyles.css';
 const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const trackRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
     const scrollbarRef = useRef(null);
     const [isFullScreen, setIsFullScreen] = useState(startFullScreen);
     const [selectedImage, setSelectedImage] = useState(initialImage);
@@ -17,8 +18,10 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     const [posMulti, setPosMulti] = useState(0.1);
     const imageRefs = useRef([]);
     const [touchStartX, setTouchStartX] = useState(0);
+    const [touchStartY, setTouchStartY] = useState(0);
     const [isTapping, setIsTapping] = useState(false);
     const [isInteracting, setIsInteracting] = useState(false);
+    const [isHorizontalMove, setIsHorizontalMove] = useState(false);
     const interactionTimeout = useRef(null);
     const [imageTransitionState, setImageTransitionState] = useState({
         rect: startFullScreen ? {
@@ -30,31 +33,19 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         objectPosition: '100% center',
         scale: 1
     });
-
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
     const [sliderState, setSliderState] = useState({
         mouseDownAt: 0,
         prevPercentage: 0,
         percentage: 0
     });
     
-    useEffect(() => {
-        const sliderContainer = document.querySelector('.slider-container');
-        if (sliderContainer) {
-            sliderContainer.style.touchAction = isInteracting ? 'pan-x' : 'auto';
-        }
-    }, [isInteracting]);
-    const startInteraction = () => {
-        setIsInteracting(true);
-        if (interactionTimeout.current) {
-            clearTimeout(interactionTimeout.current);
-        }
-    };
-    
-    const endInteraction = () => {
-        interactionTimeout.current = setTimeout(() => {
-            setIsInteracting(false);
-        }, 500);
-    };
+
     useEffect(() => {
         const updateVariablesBasedOnScreenWidth = () => {
             const width = window.innerWidth;
@@ -277,8 +268,18 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         if (!track) return;
 
         const handleOnDown = (e) => {
-            startInteraction();
             if (isFullScreen || isDraggingScrollbar) return;
+
+            // Skip this handler on mobile to allow vertical scrolling
+            if (isMobile && e.type.includes('touch')) {
+                // For touch events, store starting position
+                if (e.touches && e.touches[0]) {
+                    setTouchStartX(e.touches[0].clientX);
+                    setTouchStartY(e.touches[0].clientY);
+                    setIsHorizontalMove(false);
+                }
+                return;
+            }
         
             const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
             setSliderState(prev => ({
@@ -289,7 +290,6 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         };
 
         const handleOnUp = () => {
-            endInteraction();
             if (isFullScreen || isDraggingScrollbar) return;
             
             setSliderState(prev => ({
@@ -297,21 +297,49 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 mouseDownAt: 0,
                 prevPercentage: prev.percentage
             }));
+            setIsHorizontalMove(false);
         };
 
         const handleOnMove = (e) => {
-            startInteraction();
             if (isFullScreen || isDraggingScrollbar) return;
+
+            // For touch events on mobile, determine if it's a horizontal or vertical move
+            if (isMobile && e.touches && e.touches[0]) {
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                const deltaX = Math.abs(touchX - touchStartX);
+                const deltaY = Math.abs(touchY - touchStartY);
+                
+                // If this is the first significant movement, determine direction
+                if (!isHorizontalMove && (deltaX > 10 || deltaY > 10)) {
+                    // If more horizontal than vertical, prevent default to handle slider
+                    if (deltaX > deltaY) {
+                        e.preventDefault();
+                        setIsHorizontalMove(true);
+                    } else {
+                        // If more vertical, exit the handler to allow normal scrolling
+                        return;
+                    }
+                } else if (!isHorizontalMove) {
+                    // Not enough movement to determine direction yet
+                    return;
+                } else if (isHorizontalMove) {
+                    // Already determined to be horizontal, prevent default
+                    e.preventDefault();
+                }
+            }
             
             const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
-            if (e.touches) {
-                e.preventDefault();
+            
+            // Don't use preventDefault on non-touch events or when not in horizontal mode
+            if (isMobile && e.type.includes('touch') && !isHorizontalMove) {
+                return;
             }
+            
             if (sliderState.mouseDownAt === 0) return;
             setIsDragging(true);
             const mouseDelta = sliderState.mouseDownAt - clientX;
             const maxDelta = window.innerWidth / 1;
-            const isMobile = window.innerWidth <= 1000;
             const speedFactor = isMobile ? 2.5 : 1; 
             const percentage = (mouseDelta / maxDelta) * -100 * speedFactor;
             const nextPercentageUnconstrained = sliderState.prevPercentage + percentage;
@@ -326,27 +354,32 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             updateTrackPosition(nextPercentage);
         };
 
-        window.addEventListener('mousedown', handleOnDown);
-        window.addEventListener('mousemove', handleOnMove);
-        window.addEventListener('mouseup', handleOnUp);
+        // Only add mouse events for desktop
+        if (!isMobile) {
+            window.addEventListener('mousedown', handleOnDown);
+            window.addEventListener('mousemove', handleOnMove);
+            window.addEventListener('mouseup', handleOnUp);
+        }
         
-        window.addEventListener('touchstart', handleOnDown);
-        window.addEventListener('touchmove', handleOnMove);
+        // For mobile, we'll handle touch events differently
+        window.addEventListener('touchstart', handleOnDown, { passive: false });
+        window.addEventListener('touchmove', handleOnMove, { passive: false });
         window.addEventListener('touchend', handleOnUp);
 
         return () => {
-            window.removeEventListener('mousedown', handleOnDown);
-            window.removeEventListener('mousemove', handleOnMove);
-            window.removeEventListener('mouseup', handleOnUp);
+            if (!isMobile) {
+                window.removeEventListener('mousedown', handleOnDown);
+                window.removeEventListener('mousemove', handleOnMove);
+                window.removeEventListener('mouseup', handleOnUp);
+            }
             
             window.removeEventListener('touchstart', handleOnDown);
             window.removeEventListener('touchmove', handleOnMove);
             window.removeEventListener('touchend', handleOnUp);
         };
-    }, [isFullScreen, sliderState, isDraggingScrollbar]);
+    }, [isFullScreen, sliderState, isDraggingScrollbar, isMobile, touchStartX, touchStartY, isHorizontalMove]);
 
     const handleScrollbarMouseDown = (e) => {
-        startInteraction();
         if (isFullScreen) return;
         
         setIsDraggingScrollbar(true);
@@ -393,16 +426,9 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
     };
 
     const handleScrollbarMouseUp = () => {
-        endInteraction();
         setIsDraggingScrollbar(false);
     };
-    useEffect(() => {
-        return () => {
-            if (interactionTimeout.current) {
-                clearTimeout(interactionTimeout.current);
-            }
-        };
-    }, []);
+
     useEffect(() => {
         window.addEventListener('mousemove', handleScrollbarMouseMove);
         window.addEventListener('mouseup', handleScrollbarMouseUp);
@@ -425,16 +451,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
             rect: null
         }));
     };
-    const handleTouchStart = (e) => {
-        setTouchStartX(e.touches[0].clientX);
-        setIsDragging(false);
-    };
-    const handleTouchEnd = (e) => {
-        const deltaX = Math.abs(e.changedTouches[0].clientX - touchStartX);
-        if (deltaX < 5) { // Considered a tap
-            handleImageClick(e, null, null);
-        }
-    };
+
     const handleScrollbarTouchStart = (e) => {
         if (isFullScreen) return;
         setIsDraggingScrollbar(true);
@@ -444,6 +461,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
 
     const handleScrollbarTouchMove = (e) => {
         if (!isDraggingScrollbar || isFullScreen) return;
+        e.preventDefault(); // Prevent default only for scrollbar touch movements
         const touch = e.touches[0];
         handleScrollbarMouseMove(touch);
     };
@@ -481,16 +499,13 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                         alt={`Image ${index + 1}`}
                         draggable="false"
                         onClick={(e) => handleImageClick(e, src, index)}
-                        onTouchStart={handleTouchStart}
-                        onTouchEnd={handleTouchEnd}
                         whileHover={{ scale: 1.02 }}
                         style={{
                             cursor: 'pointer',
                             willChange: 'transform',
-                            touchAction: 'pan-x'
+                            touchAction: isMobile ? 'pan-y' : 'pan-x'
                         }}
                         ref={(el) => (imageRefs.current[index] = el)}
-
                     />
                 ))}
             </div>
@@ -499,9 +514,9 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
                 className="image-scrollbar" 
                 ref={scrollbarRef}
                 onMouseDown={handleScrollbarMouseDown}
-                    onTouchStart={handleScrollbarTouchStart}
-                    onTouchMove={handleScrollbarTouchMove}
-                    onTouchEnd={handleScrollbarMouseUp}
+                onTouchStart={handleScrollbarTouchStart}
+                onTouchMove={handleScrollbarTouchMove}
+                onTouchEnd={handleScrollbarMouseUp}
                 style={{
                     position: 'relative',
                     width: '100%',
@@ -581,4 +596,3 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
 };
 
 export default ImageSlider;
-
