@@ -3,7 +3,20 @@
     padding-top: 10px;
     max-width: 100vw; 
   }
-
+  .stacked-image {
+    width: 100vw;
+    max-height: 70vh;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  
+  .stacked-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
   .middle-section {
     display: grid;
     grid-template-columns: 700px 1fr;
@@ -16,7 +29,34 @@
     width: 100%; 
     height: 1300px;
   }
-
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .large-image,
+  .small-image,
+  .full-width-image,
+  .three-column img,
+  .top-right-image,
+  .bottom-right-images img {
+    aspect-ratio: 3/4;
+  }
+  
+  .tall-image {
+    aspect-ratio: 9/16;
+  }
+  
+  .full-width-image {
+    aspect-ratio: 16/9;
+  }
+  
+  .three-column img:first-child {
+    aspect-ratio: 9/16;
+  }
+  
   .right-column {
     display: flex;
     flex-direction: column;
@@ -110,7 +150,8 @@
     min-height: unset;
     max-height: unset;
 }
-@media (min-width: 769px) {
+
+@media (min-width: 1920px) {
   .middle-section {
       display: grid;
       grid-template-columns: 700px 1fr;
@@ -156,96 +197,5 @@
   }
 }
 
-/* Tablet styles */
-@media (max-width: 1024px) and (min-width: 481px) {
-  .middle-section {
-      grid-template-columns: 1fr;
-      height: auto;
-      gap: 20px;
-  }
 
-  .tall-image,
-  .right-column {
-      height: auto;
-  }
 
-  .top-row {
-      flex-direction: column;
-      height: auto;
-  }
-
-  .large-image,
-  .small-image {
-      height: 600px;
-  }
-
-  .full-width-image {
-      height: 800px;
-  }
-
-  .three-column {
-      height: 600px;
-  }
-}
-
-/* Mobile styles */
-@media (max-width: 480px) {
-  .top-row,
-  .three-column {
-      flex-direction: column;
-  }
-
-  .large-image,
-  .small-image,
-  .full-width-image,
-  .three-column img {
-      height: 400px;
-  }
-
-  .bottom-right-images {
-      grid-template-columns: 1fr;
-      height: auto;
-  }
-
-  .top-right-image {
-      height: 300px;
-  }
-
-  .middle-section {
-      gap: 20px;
-  }
-
-  .tall-image {
-      height: 500px;
-  }
-}
-
-/* General image rules */
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Maintain aspect ratios */
-.large-image,
-.small-image,
-.full-width-image,
-.three-column img,
-.top-right-image,
-.bottom-right-images img {
-  aspect-ratio: 3/4;
-}
-
-.tall-image {
-  aspect-ratio: 9/16;
-}
-
-.full-width-image {
-  aspect-ratio: 16/9;
-}
-
-.three-column img:first-child {
-  aspect-ratio: 9/16;
-}
