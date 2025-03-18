@@ -1,0 +1,186 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  height: auto; 
+  padding: 0px 0px;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-logo {
+  height: 100px;
+  width: 100vw; 
+  max-width: 100%; 
+  margin-bottom: 25px;
+  object-fit: contain;
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 24px; 
+  transition: all 0.3s ease;
+}
+
+.icon-wrapper {
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+.icon-wrapper:hover {
+  background-color: #382e2d;
+}
+.icon-wrapper:hover .social-icon {
+  color: white;
+  transform: scale(1.1);
+}
+.info-section {
+  width: 100%;
+  margin: 0;
+  padding: 0px 0;
+}
+
+.info-top {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column; 
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: 20px;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(59,46,46);
+}
+
+.info-bottom {
+  display: flex;
+  flex-direction: column; 
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: 22px;
+  gap: 15px;
+  align-items: center;
+}
+
+.legal-text {
+  text-decoration: underline;
+  color: inherit;
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: 20px;
+  text-wrap: pretty; 
+  align-items: center;
+}
+.copyright {
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size: 20px;
+  text-wrap: pretty; 
+  align-items: center;
+}
+@media (min-width: 2140px) {
+  .legal-text {
+    font-size: 26px;
+  }
+  .copyright {
+    font-size: 26px;
+  }
+  .info-top {
+    font-size: 28px;
+  }
+  .footer-content {
+    max-width: 1500px;
+  }
+}
+@media (min-width: 1240px) {
+  .footer-container {
+    padding: 50px 20px;
+  }
+
+  .footer-logo {
+      height: 150px;
+  }
+
+  .social-icons {
+      gap: 30px;
+      margin-bottom: 50px;
+  }
+
+  .info-section {
+      width: 80%;
+      margin: 0 auto;
+  }
+  .info-top {
+      flex-direction: row;
+      justify-content: center;
+      gap: 111px;
+  }
+  .info-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
+@media (min-width: 768px) and (max-width: 1239px) {
+  .footer-container {
+      padding: 50px 20px;
+  }
+  
+  .footer-logo {
+      width: 90vw;
+      height: 150px;
+  }
+  
+  .social-icons {
+      gap: 30px;
+      margin-bottom: 50px;
+  }
+  
+  .info-section {
+      width: 80%;
+      margin: 0 auto;
+  }
+  
+  .info-top {
+      flex-direction: row;
+      justify-content: center;
+      gap: 80px;
+  }
+  
+  .info-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  
+  .legal-text, .copyright {
+      font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .social-icons {
+    gap: 10px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+ .info-top {
+  gap: 1px
+ }
+ .footer-logo {
+  width: 85vw;
+
+}
+}

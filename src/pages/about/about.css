@@ -1,0 +1,370 @@
+.image-container {
+    position: relative;
+    width: 100vw;
+    height: auto; 
+    max-height: 100vh;
+    overflow: hidden;
+}
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.banner-title {
+  position: absolute;
+  left: 7%;
+  bottom: 10%;
+  letter-spacing: 4px;
+  font-size: 90px;
+  color: rgb(59, 46, 46);
+  font-family: 'Mukta Mahee', sans-serif;
+  font-weight: bold;
+  pointer-events: none; 
+}
+.about-text-blocks {
+    letter-spacing: 0.01px;
+    display: flex;
+    width: 74%;
+    justify-content: space-between;
+        
+}
+
+.portret-section-background {
+  background-color: rgb(59, 46, 46);
+  width: 100%;
+  padding: 80px 0;
+  margin: 0px 0;
+}
+.about-portret-wrapper .portret-text-title {
+  font-weight: 900;
+  margin-bottom: 70px;
+  font-size: 44.4px;
+  color: white !important;
+}
+
+.about-portret-wrapper .portret-text-paragraph {
+  font-size: 20px;
+  font-weight: 100;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  color: white !important;
+
+}
+
+.about-portret-wrapper .portret-text-content {
+  padding: 110px 315px 75px 0px;
+}
+
+.about-text-section {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: justify;
+    text-align-last: left;
+}
+.about-text-block {
+    width: 50%;
+    padding: 20px;
+
+}
+  
+.about-text-block1 {
+    width: 50%;
+    padding: 20px;
+    margin-top: -9.7px;
+}
+  
+.about-text-block2 {
+    width: 50%;
+    padding: 20px;
+    margin-top: -100px;
+}
+  
+.about-text-block p, 
+ .about-text-block1 p, 
+  .about-text-block2 p {
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: regular;
+}
+
+.about-span1 {
+    width: 50%;
+    color: rgb(120, 70, 59);
+    font-weight: bold;
+  }
+
+  .zakelijk-section {
+    background-color: rgba(202, 197, 190, 0.54);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .zakelijk-content {
+    width: 80%;
+    padding-top: 40px;  
+    padding-bottom: 40px; 
+    font-family: Arial, sans-serif;
+  }
+  
+  .zakelijk-content h2 {
+    color: #382e2d; 
+    margin-bottom: 20px; 
+    font-size: 34px;
+    text-align: center;
+  }
+  
+  .zakelijk-content p {
+    margin-bottom: 25px;
+    line-height: 1.5;
+    font-size: 20px;
+    text-align: justify;
+    text-align-last: left;
+  }
+  
+  .contact-button {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 18px;
+    border: 1px solid #382e2d;
+    padding: 20px 40px;
+    text-decoration: none;
+    color: #382e2d;
+    transition: all 0.3s ease;
+    transform: scale(1);
+  }
+  .contact-button:hover {
+    background-color: #2a2221;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  .corners-section {
+    height: 1300px;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px;
+    box-sizing: border-box;
+  }
+  .corners-main-title {
+    font-size: 58px;
+    color: #382e2d;
+    font-family: 'Mukta Mahee', sans-serif;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: 6px;
+  }
+  .corners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+  }
+  
+  .corner-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .corner-image-container {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+  }
+  
+  .corner-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .corner-title {
+    font-size: 35px;
+    margin-bottom: 15px;
+    color: #382e2d;
+    font-family: 'Mukta Mahee', sans-serif;
+    
+  }
+  
+  .corner-text {
+    font-size: 24px;
+    line-height: 1.5;
+    color: black;
+    max-width: 550px;
+    text-align: justify;
+    text-align-last: left;
+    font-family: 'Mukta Mahee', sans-serif;
+  }
+  
+  .full-width-bottom-image {
+    height: 450px;
+    width: 100vw;
+  }
+  
+  .full-width-bottom-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (min-width: 2100px) {
+    .about-portret-wrapper .portret-text-title {
+      font-size: 55px;
+    }
+    
+    .about-portret-wrapper .portret-text-paragraph {
+      font-size: 33px;
+    }
+    .about-text-block p, 
+    .about-text-block1 p, 
+    .about-text-block2 p {
+      font-size: 24px;
+    }
+
+    .zakelijk-content {
+      padding-top: 60px;  
+      padding-bottom: 60px; 
+    }
+    
+    .zakelijk-content h2 {
+      font-size: 50px;
+    }
+    
+    .zakelijk-content p {
+      font-size: 26px;
+    }
+    .contact-button {
+      font-size: 24px;
+      padding: 30px 60px;
+    }
+    .corner-title {
+      font-size: 45px;
+    }
+    .corners-section {
+      margin-bottom: 125px;
+    }
+    .corner-text {
+      font-size: 30px;
+    }
+  }
+  @media (max-width: 933px) {
+    .about-text-section {
+      height: auto;
+      padding: 40px 20px;
+      margin-top: 20px;
+    }
+    
+    .about-text-section h2 {
+      font-size: 32px;
+      line-height: 1.2;
+      word-spacing: normal;
+    }
+    
+    .about-text-blocks,
+    .about-text-blocks-second-row {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .about-text-block,
+    .about-text-block1,
+    .about-text-block2 {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0;
+    }
+    
+    .about-text-block p,
+    .about-text-block1 p,
+    .about-text-block2 p {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 1600px) {
+    .about-portret-wrapper .portret-text-content {
+      padding: 75px 25px 0px 25px;
+    }
+    .corners-section {
+      height: auto;
+      width: 90vw;
+      padding: 30px;
+    }
+  
+    .corners-main-title {
+      font-size: 42px;
+      margin-bottom: 30px;
+    }
+  
+    .corners-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 60px;
+    }
+  
+    .corner-item {
+      margin-bottom: 40px;
+    }
+  
+    .corner-title {
+      font-size: 28px;
+    }
+  
+    .corner-text {
+      font-size: 20px;
+      max-width: 50%;
+    }
+  
+    .corner-image-container {
+      width: 160px;
+      height: 160px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .corners-main-title {
+      font-size: 36px;
+      letter-spacing: 3px;
+    }
+  
+    .corner-title {
+      font-size: 24px;
+    }
+    .banner-title {
+      font-size: 35px; 
+      left: 5%;
+      bottom: 8%;
+      letter-spacing: 2px;
+    }
+    .corner-text {
+      font-size: 18px;
+      max-width: 100%;
+    }
+    .corner-image-container {
+      width: 140px;
+      height: 140px;
+    }
+  }
+  @media (max-width: 480px) {
+    .banner-title {
+        font-size: 7vw; 
+        left: 5%;
+        bottom: 5%;
+        letter-spacing: 1px;
+    }
+}
+  
