@@ -1,5 +1,35 @@
-voor animations todo:
+GrootsDesign Website
 
-fullscreen image moet niet werken zols hij nu werkt, nu word een nieuwe inage gepakt vanaf de size van de clicked image en hij moet de clicked image juist resizen naar fullscreen, op hover moet text boven en onder het plaatje verschijnen voor projectnaam locatie datum etc.
+Welcome to the GrootsDesign website repository. This website is developed for GrootsDesign, showcasing its projects and services with a modern, responsive design.
 
-bij klikken op een plaatje, de slider hierna toe moven en dan pas de fullscreen animation gooien, na klikken op plaatje kan je naar beneden scrollen of op plusje klikken dan animate er zo text nasr boven die dan de image weg drukt krijg jeninfo over het project
+🚀 Technologies Used
+
+React (with TypeScript & JavaScript)
+
+HTML & CSS
+
+Formspree (for handling contact forms)
+
+Vercel (for hosting and deployment)
+
+🌍 Live Website
+
+The website is hosted on Vercel and can be accessed at:
+https://www.grootsdesign.com
+
+✨ Features
+
+Fully responsive design
+
+Modern UI with smooth animations
+
+Contact forms integrated via Formspree
+
+Fast and efficient performance using React & Vercel
+
+⚖️ License & Copyright
+
+Copyright © 2025 GrootsDesign. All rights reserved.
+This website and its contents are protected under applicable copyright laws. Unauthorized reproduction or distribution is strictly prohibited.
+
+For any inquiries, please visit our contact page.
