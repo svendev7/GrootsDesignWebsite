@@ -324,7 +324,14 @@ html, body {
 }
 }
 @media (max-width: 768px) {
-
+  .scroll-indicator {
+    height: 75px;
+    width: 75px;
+    bottom: 15%;
+  }
+  .chevron-icon {
+    font-size: 75px;
+  }
   .overlay-image {
     max-width: 200vw; 
     max-height: 200vh
