@@ -40,7 +40,7 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch('https://formspree.io/f/xdkekyvq', {
+      const response = await fetch('https://formspree.io/f/manenrod', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
