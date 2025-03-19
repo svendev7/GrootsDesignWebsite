@@ -20,6 +20,11 @@ const reviews = [
     text: "Van begin tot eind was het een fijne ervaring om met GrootsDesign samen te werken. Ilse combineert professionaliteit met een persoonlijke aanpak, waardoor we ons direct op ons gemak voelden. Ze heeft een uniek talent om ruimtes tot leven te brengen met een perfect samenspel van kleuren, materialen en licht. Ons huis voelt eindelijk als een plek waar we helemaal onszelf kunnen zijn!",
     author: "-Sanne & Bastiaan",
   },
+  {
+    id: 4,
+    text: "Ilse heeft ons huis volledig 3D gemaakt en super advies gegeven over alle elementen. Een echte professional die weet wat ze doet.",
+    author: "-Mauricio & Niels",
+  },
 ]
 
 const ReviewsCarousel = () => {

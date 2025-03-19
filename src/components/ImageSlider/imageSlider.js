@@ -465,7 +465,7 @@ const ImageSlider = ({ startFullScreen = false, initialImage = null }) => {
         const touch = e.touches[0];
         handleScrollbarMouseMove(touch);
     };
-    const images = ['/images/9.jpg', '/images/8.jpg', '/images/4.jpg', '/images/3.jpg', '/images/6.jpg', '/images/2.jpg', '/images/5.jpg', '/images/1.jpg', '/images/7.jpg'];
+    const images = ['/images/1.png', '/images/8.jpg', '/images/4.jpg', '/images/4.png', '/images/6.jpg', '/images/2.jpg', '/images/5.jpg', '/images/6.png', '/images/7.jpg'];
 
     return (
         <LayoutGroup>
